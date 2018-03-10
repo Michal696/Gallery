@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using iw5_2018_team20.Entities.Base.Interfce;
+using iw5_2018_team20.Entities.Base.Interface;
 
-namespace iw5_2018_team20.Entities
+namespace iw5_2018_team20.Entities.Base.Implementation
 {
     public abstract class EntityBase : IEntity
     {
