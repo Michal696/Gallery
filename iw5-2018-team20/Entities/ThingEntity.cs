@@ -7,6 +7,6 @@ namespace iw5_2018_team20.Entities
     public class ThingEntity : EntityBase
     {
         [Required]
-        private string Name { get; set; }
+        public string Name { get; set; }
     }
 }
