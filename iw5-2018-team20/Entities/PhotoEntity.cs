@@ -12,7 +12,7 @@ namespace iw5_2018_team20.Entities
         public int Width{ get; set; }
         public int Height{ get; set; }
         public string Note{ get; set; }
-        public Album Album{ get; set; }
+        public AlbumEntity Album{ get; set; }
     }
 
     enum FormatType

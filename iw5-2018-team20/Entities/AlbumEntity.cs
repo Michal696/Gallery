@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace iw5_2018_team20.Entities
 {
-    public class Album : EntityBase
+    public class AlbumEntity : EntityBase
     {
         [Required]
         public string Name { get; set; }
