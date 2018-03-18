@@ -9,7 +9,7 @@ namespace iw5_2018_team20.Entities
         [Required] public int positionX { get; set; }
         [Required] public int positionY { get; set; }
 
-        [Required] public PhotoEntity Photo;
-        [Required] public ThingEntity Person;
+        [Required] public PhotoEntity Photo { get; set; }
+        [Required] public ThingEntity Person { get; set; }
     }
 }
