@@ -65,7 +65,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Entities\AlbumEntity.cs" />
-    <Compile Include="Entities\Base\PhotoPersonEntity.cs" />
+    <Compile Include="Entities\PhotoPersonEntity.cs" />
     <Compile Include="Entities\Base\Implementation\EntityBase.cs" />
     <Compile Include="Entities\Base\Interface\IEntity.cs" />
     <Compile Include="Entities\PersonEntity.cs" />
