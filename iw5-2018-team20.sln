@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iw5-2018-team20", "iw5-2018-team20\iw5-2018-team20.csproj", "{54876EEE-CD7D-483F-936B-EB062567E8EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iw5-2018-team20.App", "iw5-2018-team20\iw5-2018-team20.App.csproj", "{54876EEE-CD7D-483F-936B-EB062567E8EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iw5-2018-team20.DAL", "iw5-2018-team20.DAL\iw5-2018-team20.DAL.csproj", "{7B276BAA-85B5-4D09-93A1-EE55199D51BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{54876EEE-CD7D-483F-936B-EB062567E8EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54876EEE-CD7D-483F-936B-EB062567E8EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54876EEE-CD7D-483F-936B-EB062567E8EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B276BAA-85B5-4D09-93A1-EE55199D51BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B276BAA-85B5-4D09-93A1-EE55199D51BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B276BAA-85B5-4D09-93A1-EE55199D51BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B276BAA-85B5-4D09-93A1-EE55199D51BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,7 @@
 ﻿using System;
-using iw5_2018_team20.Entities.Base.Interface;
+using iw5_2018_team20.DAL.Entities.Base.Interface;
 
-namespace iw5_2018_team20.Entities.Base.Implementation
+namespace iw5_2018_team20.DAL.Entities.Base.Implementation
 {
     public abstract class EntityBase : IEntity
     {

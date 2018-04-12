@@ -64,14 +64,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Entities\AlbumEntity.cs" />
-    <Compile Include="Entities\PhotoPersonEntity.cs" />
-    <Compile Include="Entities\Base\Implementation\EntityBase.cs" />
-    <Compile Include="Entities\Base\Interface\IEntity.cs" />
-    <Compile Include="Entities\PersonEntity.cs" />
-    <Compile Include="Entities\PhotoEntity.cs" />
-    <Compile Include="Entities\PhotoThingEntity.cs" />
-    <Compile Include="Entities\ThingEntity.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

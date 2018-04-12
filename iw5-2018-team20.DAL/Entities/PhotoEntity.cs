@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using iw5_2018_team20.Entities.Base.Implementation;
+using iw5_2018_team20.DAL.Entities.Base.Implementation;
 
-namespace iw5_2018_team20.Entities
+namespace iw5_2018_team20.DAL.Entities
 {
     public class PhotoEntity : EntityBase
     {
