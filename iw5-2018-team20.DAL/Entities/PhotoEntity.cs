@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using iw5_2018_team20.DAL.Entities.Base.Implementation;
 
@@ -13,6 +14,8 @@ namespace iw5_2018_team20.DAL.Entities
         public int Height{ get; set; }
         public string Note{ get; set; }
         public AlbumEntity Album{ get; set; }
+
+        public virtual ICollection<ObjectEntity> Objects { get; set; } = new List<ObjectEntity>();
     }
 
     public enum FormatType
