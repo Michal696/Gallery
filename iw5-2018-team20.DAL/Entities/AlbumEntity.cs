@@ -9,7 +9,7 @@ namespace iw5_2018_team20.DAL.Entities
         [Required]
         public string Name { get; set; }
 
-        public virtual ICollection<PhotoEntity> Objects { get; set; } = new List<PhotoEntity>();
+        public virtual ICollection<PhotoEntity> Photos { get; set; } = new List<PhotoEntity>();
 
     }
 }

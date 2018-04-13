@@ -87,7 +87,7 @@ namespace iw5_2018_team20.DAL.Migrations
             {
                 Id = new Guid("92f40210-f3f5-4605-83b5-cf7c93889c4b"),
                 Name = "Selfies",
-                Objects = { tomasPhoto }
+                Photos = { tomasPhoto }
             };
 
             tomasPhoto.Album = selfiesAlbum;

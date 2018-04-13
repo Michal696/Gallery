@@ -56,7 +56,10 @@
     <Compile Include="Models\PhotosListModel.cs" />
     <Compile Include="Models\ThingsListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AlbumRepository.cs" />
+    <Compile Include="Repositories\PersonRepository.cs" />
     <Compile Include="Repositories\PhotoRepository.cs" />
+    <Compile Include="Repositories\ThingRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\iw5-2018-team20.DAL\iw5-2018-team20.DAL.csproj">

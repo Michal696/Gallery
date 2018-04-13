@@ -2,52 +2,53 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using iw5_2018_team20.BL.Models;
 using iw5_2018_team20.DAL;
 using iw5_2018_team20.DAL.Entities;
 
 namespace iw5_2018_team20.BL.Repositories
 {
-    public class PhotoRepository
+    public class AlbumRepository
     {
         Mapper mapper = new Mapper();
 
-        public PhotoDetailModel FindById(Guid id)
+        public AlbumDetailModel FindById(Guid id)
         {
             using (var galleryDbContext = new GalleryDbContext())
             {
-                var photo = galleryDbContext.Photos
-                    .Include(x => x.ObjectsOnPhoto)
+                var album = galleryDbContext.Albums
+                    .Include(x => x.Photos)
                     .FirstOrDefault(x => x.Id == id);
 
-                if (photo == null)
+                if (album == null)
                     return null;
 
-                return mapper.MapPhotoEntityToPhotoDetailModel(photo);
+                return mapper.MapAlbumEntityToAlbumDetailModel(album);
             }
         }
 
-        public List<PhotosListModel> GetAll()
+        public List<AlbumsListModel> GetAll()
         {
             using (var galleryDbContext = new GalleryDbContext())
             {
-                return galleryDbContext.Photos
-                    .Select(x => mapper.MapPhotoEntityToPhotoListModel(x))
+                return galleryDbContext.Albums
+                    .Select(x => mapper.MapAlbumEntityToAlbumListModel(x))
                     .ToList();
             }
         }
 
-        public PhotoDetailModel Insert(PhotoDetailModel detail)
+        public AlbumDetailModel Insert(AlbumDetailModel detail)
         {
             using (var galleryDbContext = new GalleryDbContext())
             {
-                var entity = mapper.MapPhotoDetailModelToPhotoEntity(detail);
+                var entity = mapper.MapAlbumDetailModelToAlbumEntity(detail);
                 entity.Id = Guid.NewGuid();
-
-                galleryDbContext.Photos.Add(entity);
+                galleryDbContext.Albums.Add(entity);
                 galleryDbContext.SaveChanges();
 
-                return mapper.MapPhotoEntityToPhotoDetailModel(entity);
+                return mapper.MapAlbumEntityToAlbumDetailModel(entity);
             }
         }
 
@@ -55,11 +56,12 @@ namespace iw5_2018_team20.BL.Repositories
         {
             using (var galleryDbContext = new GalleryDbContext())
             {
-                var entity = new PhotoEntity() {Id = id};
-                galleryDbContext.Photos.Attach(entity);
-                galleryDbContext.Photos.Remove(entity);
+                var entity = new AlbumEntity() { Id = id };
+                galleryDbContext.Albums.Attach(entity);
+                galleryDbContext.Albums.Remove(entity);
                 galleryDbContext.SaveChanges();
             }
         }
+
     }
 }

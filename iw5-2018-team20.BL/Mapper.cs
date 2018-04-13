@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using iw5_2018_team20.BL.Models;
+﻿using iw5_2018_team20.BL.Models;
 using iw5_2018_team20.DAL.Entities;
 
 namespace iw5_2018_team20.BL
@@ -49,7 +44,56 @@ namespace iw5_2018_team20.BL
                 Format = model.Format,
                 Height = model.Height,
                 Note = model.Note,
-                Width = model.Width
+                Width = model.Width,
+                ObjectsOnPhoto = model.ObjectsOnPhoto
+            };
+        }
+
+        public AlbumDetailModel MapAlbumEntityToAlbumDetailModel(AlbumEntity entity)
+        {
+            return new AlbumDetailModel()
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                Photos = entity.Photos
+            };
+        }
+
+        public AlbumsListModel MapAlbumEntityToAlbumListModel(AlbumEntity entity)
+        {
+            return new AlbumsListModel()
+            {
+                Id = entity.Id,
+                Name = entity.Name
+            };
+        }
+
+        public AlbumEntity MapAlbumDetailModelToAlbumEntity(AlbumDetailModel model)
+        {
+            return new AlbumEntity()
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Photos = model.Photos
+            };
+        }
+
+        public ThingsListModel MapThingEntityToThingsListModel(ThingEntity entity)
+        {
+            return new ThingsListModel()
+            {
+                Id = entity.Id,
+                Name = entity.Name
+            };
+        }
+
+        public PersonListModel MapPersonEntityToPersonListModel(PersonEntity entity)
+        {
+            return new PersonListModel()
+            {
+                Id = entity.Id,
+                Firstname = entity.Firstname,
+                Surname = entity.Surname
             };
         }
     }
