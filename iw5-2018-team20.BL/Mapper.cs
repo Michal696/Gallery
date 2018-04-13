@@ -96,5 +96,24 @@ namespace iw5_2018_team20.BL
                 Surname = entity.Surname
             };
         }
+
+        public PersonEntity MapPersonListModelToPersonEntity(PersonListModel model)
+        {
+            return new PersonEntity()
+            {
+                Id = model.Id,
+                Firstname = model.Firstname,
+                Surname = model.Surname
+            };
+        }
+
+        public ThingEntity MapThingListModelToThingEntity(ThingsListModel model)
+        {
+            return new ThingEntity()
+            {
+                Id = model.Id,
+                Name = model.Name,
+            };
+        }
     }
 }

@@ -44,6 +44,9 @@ namespace iw5_2018_team20.BL.Repositories
                 var entity = mapper.MapPhotoDetailModelToPhotoEntity(detail);
                 entity.Id = Guid.NewGuid();
 
+                var album = galleryDbContext.Albums.First(x => x.Id == entity.Album.Id);
+                album.Photos.Add(entity);
+
                 galleryDbContext.Photos.Add(entity);
                 galleryDbContext.SaveChanges();
 
@@ -58,6 +61,25 @@ namespace iw5_2018_team20.BL.Repositories
                 var entity = new PhotoEntity() {Id = id};
                 galleryDbContext.Photos.Attach(entity);
                 galleryDbContext.Photos.Remove(entity);
+                galleryDbContext.SaveChanges();
+            }
+        }
+
+        public void Update(PhotoDetailModel detail)
+        {
+            using (var galleryDbContext = new GalleryDbContext())
+            {
+                var entity = galleryDbContext.Photos.First(r => r.Id == detail.Id);
+
+                entity.Name = detail.Name;
+                entity.CreationTime = detail.CreationTime;
+                entity.Format = detail.Format;
+                entity.Width = detail.Width;
+                entity.Height = detail.Height;
+                entity.Note = detail.Note;
+                entity.Album = detail.Album;
+                entity.ObjectsOnPhoto = detail.ObjectsOnPhoto;
+
                 galleryDbContext.SaveChanges();
             }
         }

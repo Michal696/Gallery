@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using iw5_2018_team20.BL.Models;
 using iw5_2018_team20.DAL;
 using iw5_2018_team20.DAL.Entities;
