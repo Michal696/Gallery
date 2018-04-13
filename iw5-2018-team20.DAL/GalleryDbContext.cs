@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace iw5_2018_team20.DAL
 {
-    class GalleryDbContext : DbContext
+    public class GalleryDbContext : DbContext
     {
         public IDbSet<Entities.PhotoEntity> Photos { get; set; }
         public IDbSet<Entities.AlbumEntity> Albums { get; set; }

@@ -5,7 +5,7 @@ using iw5_2018_team20.DAL.Entities;
 
 namespace iw5_2018_team20.BL.Models
 {
-    class PhotoDetailModel : BaseModel
+    public class PhotoDetailModel : BaseModel
     {
         public string Name { get; set; }
         public DateTime CreationTime { get; set; }
@@ -14,6 +14,6 @@ namespace iw5_2018_team20.BL.Models
         public int Height { get; set; }
         public string Note { get; set; }
         public AlbumEntity Album { get; set; }
-        public virtual ICollection<ObjectEntity> Objects { get; set; } = new List<ObjectEntity>();
+        public virtual ICollection<ObjectOnPhotoEntity> ObjectsOnPhoto { get; set; } = new List<ObjectOnPhotoEntity>();
     }
 }
