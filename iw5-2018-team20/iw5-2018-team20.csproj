@@ -102,6 +102,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\iw5-2018-team20.DAL\iw5-2018-team20.DAL.csproj">
+      <Project>{7b276baa-85b5-4d09-93a1-ee55199d51be}</Project>
+      <Name>iw5-2018-team20.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
