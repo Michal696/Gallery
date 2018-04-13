@@ -13,7 +13,6 @@ namespace iw5_2018_team20.DAL
         public IDbSet<Entities.AlbumEntity> Albums { get; set; }
         public IDbSet<Entities.PersonEntity> Persons { set; get; }
         public IDbSet<Entities.ThingEntity> Things { get; set; }
-        public IDbSet<Entities.ObjectOnPhotoEntity> ObjectOnPhotos { get; set; }
 
         public GalleryDbContext() : base("GalleryContext")
         {

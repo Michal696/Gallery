@@ -21,7 +21,8 @@ namespace iw5_2018_team20.BL
                 Format = entity.Format,
                 Height = entity.Height,
                 Note = entity.Note,
-                Width = entity.Width
+                Width = entity.Width,
+                ObjectsOnPhoto = entity.ObjectsOnPhoto
             };
         }
 

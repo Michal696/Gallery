@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using iw5_2018_team20.BL.Models;
 using iw5_2018_team20.DAL;
@@ -16,19 +17,13 @@ namespace iw5_2018_team20.BL.Repositories
             using (var galleryDbContext = new GalleryDbContext())
             {
                 var photo = galleryDbContext.Photos
+                    .Include(x => x.ObjectsOnPhoto)
                     .FirstOrDefault(x => x.Name == name);
 
                 if (photo == null)
                     return null;
 
-                var objectsOnPhoto = galleryDbContext.ObjectOnPhotos
-                    .Where(x => x.Photo == photo)
-                    .ToList();
-
-                var photoDetailModel = mapper.MapPhotoEntityToPhotoDetailModel(photo);
-                photoDetailModel.ObjectsOnPhoto = objectsOnPhoto;
-
-                return photoDetailModel;
+                return mapper.MapPhotoEntityToPhotoDetailModel(photo);
             }
         }
 
@@ -37,19 +32,13 @@ namespace iw5_2018_team20.BL.Repositories
             using (var galleryDbContext = new GalleryDbContext())
             {
                 var photo = galleryDbContext.Photos
+                    .Include(x => x.ObjectsOnPhoto)
                     .FirstOrDefault(x => x.Id == id);
 
                 if (photo == null)
                     return null;
 
-                var objectsOnPhoto = galleryDbContext.ObjectOnPhotos
-                    .Where(x => x.Photo == photo)
-                    .ToList();
-
-                var photoDetailModel = mapper.MapPhotoEntityToPhotoDetailModel(photo);
-                photoDetailModel.ObjectsOnPhoto = objectsOnPhoto;
-
-                return photoDetailModel;
+                return mapper.MapPhotoEntityToPhotoDetailModel(photo);
             }
         }
 
@@ -58,7 +47,7 @@ namespace iw5_2018_team20.BL.Repositories
             using (var galleryDbContext = new GalleryDbContext())
             {
                 return galleryDbContext.Photos
-                    .Select(mapper.MapPhotoEntityToPhotoListModel)
+                    .Select(x => mapper.MapPhotoEntityToPhotoListModel(x))
                     .ToList();
             }
         }

@@ -14,7 +14,7 @@ namespace iw5_2018_team20.DAL.Entities
         public int Height{ get; set; }
         public string Note{ get; set; }
         public AlbumEntity Album{ get; set; }
-        public virtual ICollection<ObjectEntity> Objects { get; set; } = new List<ObjectEntity>();
+        public virtual ICollection<ObjectOnPhotoEntity> ObjectsOnPhoto { get; set; } = new List<ObjectOnPhotoEntity>();
     }
 
     public enum FormatType

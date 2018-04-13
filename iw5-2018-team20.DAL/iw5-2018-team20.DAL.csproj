@@ -56,9 +56,9 @@
     <Compile Include="Entities\ThingEntity.cs" />
     <Compile Include="Entities\ObjectOnPhotoEntity.cs" />
     <Compile Include="GalleryDbContext.cs" />
-    <Compile Include="Migrations\201804130056050_Init.cs" />
-    <Compile Include="Migrations\201804130056050_Init.Designer.cs">
-      <DependentUpon>201804130056050_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201804131542136_init.cs" />
+    <Compile Include="Migrations\201804131542136_init.Designer.cs">
+      <DependentUpon>201804131542136_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,8 +70,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804130056050_Init.resx">
-      <DependentUpon>201804130056050_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804131542136_init.resx">
+      <DependentUpon>201804131542136_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
