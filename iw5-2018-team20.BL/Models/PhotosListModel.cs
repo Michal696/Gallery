@@ -4,7 +4,7 @@ using iw5_2018_team20.DAL.Entities;
 
 namespace iw5_2018_team20.BL.Models
 {
-    class PhotosListModel : BaseModel
+    public class PhotosListModel : BaseModel
     {
         public string Name { get; set; }
         public DateTime CreationTime { get; set; }

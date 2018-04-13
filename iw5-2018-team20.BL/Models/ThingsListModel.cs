@@ -2,7 +2,7 @@
 
 namespace iw5_2018_team20.BL.Models
 {
-    class ThingsListModel : BaseModel
+    public class ThingsListModel : BaseModel
     {
         public string Name { get; set; }
     }

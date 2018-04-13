@@ -10,7 +10,7 @@ namespace iw5_2018_team20.BL
 {
     public class Mapper
     {
-        public PhotoDetailModel MapPhotoEntityToDetailModel(PhotoEntity entity)
+        public PhotoDetailModel MapPhotoEntityToPhotoDetailModel(PhotoEntity entity)
         {
             return new PhotoDetailModel()
             {
@@ -22,6 +22,33 @@ namespace iw5_2018_team20.BL
                 Height = entity.Height,
                 Note = entity.Note,
                 Width = entity.Width
+            };
+        }
+
+        public PhotosListModel MapPhotoEntityToPhotoListModel(PhotoEntity entity)
+        {
+            return new PhotosListModel()
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                CreationTime = entity.CreationTime,
+                Format = entity.Format,
+                Album = entity.Album
+            };
+        }
+
+        public PhotoEntity MapPhotoDetailModelToPhotoEntity(PhotoDetailModel model)
+        {
+            return new PhotoEntity()
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Album = model.Album,
+                CreationTime = model.CreationTime,
+                Format = model.Format,
+                Height = model.Height,
+                Note = model.Note,
+                Width = model.Width
             };
         }
     }
