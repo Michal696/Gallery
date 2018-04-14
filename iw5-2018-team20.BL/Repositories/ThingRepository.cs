@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using iw5_2018_team20.BL.Models;
 using iw5_2018_team20.DAL;
 using iw5_2018_team20.DAL.Entities;
@@ -15,14 +16,12 @@ namespace iw5_2018_team20.BL.Repositories
         {
             using (var galleryDbContext = new GalleryDbContext())
             {
-                return galleryDbContext.Things
-                    .Select(x => mapper.MapThingEntityToThingsListModel(x))
-                    .ToList();
+                var thingEntites = galleryDbContext.Things.ToList();
+                return thingEntites.Select(mapper.MapThingEntityToThingsListModel).ToList();
             }
         }
 
-        //TODO: jeste nevim jaky navratovy typ zde budeme potrebovat
-        public void Insert(ThingsListModel thing)
+        public ThingsListModel Insert(ThingsListModel thing)
         {
             using (var galleryDbContext = new GalleryDbContext())
             {
@@ -31,6 +30,8 @@ namespace iw5_2018_team20.BL.Repositories
 
                 galleryDbContext.Things.Add(entity);
                 galleryDbContext.SaveChanges();
+
+                return mapper.MapThingEntityToThingsListModel(entity);
             }
         }
 

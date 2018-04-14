@@ -62,6 +62,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ThingRepositoryTests.cs" />
+    <Compile Include="PersonRepositoryTests.cs" />
+    <Compile Include="AlbumRepositoryTests.cs" />
+    <Compile Include="PhotoRepositoryTests.cs" />
     <Compile Include="GalleryDbContextTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

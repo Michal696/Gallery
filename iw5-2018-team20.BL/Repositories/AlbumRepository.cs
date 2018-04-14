@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using iw5_2018_team20.BL.Models;
 using iw5_2018_team20.DAL;
 using iw5_2018_team20.DAL.Entities;
@@ -31,9 +32,8 @@ namespace iw5_2018_team20.BL.Repositories
         {
             using (var galleryDbContext = new GalleryDbContext())
             {
-                return galleryDbContext.Albums
-                    .Select(x => mapper.MapAlbumEntityToAlbumListModel(x))
-                    .ToList();
+                var albumEntites =  galleryDbContext.Albums.ToList();
+                return albumEntites.Select(mapper.MapAlbumEntityToAlbumListModel).ToList();
             }
         }
 
@@ -54,10 +54,12 @@ namespace iw5_2018_team20.BL.Repositories
         {
             using (var galleryDbContext = new GalleryDbContext())
             {
-                var entity = new AlbumEntity() { Id = id };
-                galleryDbContext.Albums.Attach(entity);
-                galleryDbContext.Albums.Remove(entity);
-                galleryDbContext.SaveChanges();
+                var itemToRemove = galleryDbContext.Albums.SingleOrDefault(x => x.Id == id);
+                if (itemToRemove != null)
+                {
+                    galleryDbContext.Albums.Remove(itemToRemove);
+                    galleryDbContext.SaveChanges();
+                }
             }
         }
 

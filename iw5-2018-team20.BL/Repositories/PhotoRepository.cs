@@ -31,9 +31,8 @@ namespace iw5_2018_team20.BL.Repositories
         {
             using (var galleryDbContext = new GalleryDbContext())
             {
-                return galleryDbContext.Photos
-                    .Select(x => mapper.MapPhotoEntityToPhotoListModel(x))
-                    .ToList();
+                var photoEntities = galleryDbContext.Photos.ToList();
+                return photoEntities.Select(mapper.MapPhotoEntityToPhotoListModel).ToList();
             }
         }
 
@@ -44,19 +43,22 @@ namespace iw5_2018_team20.BL.Repositories
                 var entity = mapper.MapPhotoDetailModelToPhotoEntity(detail);
                 entity.Id = Guid.NewGuid();
 
-                var album = galleryDbContext.Albums.First(x => x.Id == entity.Album.Id);
+                if (entity.Album != null)
+                {
+                    var album = galleryDbContext.Albums.First(x => x.Id == entity.Album.Id);
+                    entity.Album = album;
+                }
+
                 foreach (var objectOnPhotoEntity in entity.ObjectsOnPhoto)
                 {
                     var thing = galleryDbContext.Things.FirstOrDefault(x => x.Id == objectOnPhotoEntity.Object.Id);
                     var person = galleryDbContext.Persons.FirstOrDefault(x => x.Id == objectOnPhotoEntity.Object.Id);
                     if (thing != null)
                         objectOnPhotoEntity.Object = thing;
-
-                    if (person != null)
+                    else if (person != null)
                         objectOnPhotoEntity.Object = person;
                 }
 
-                entity.Album = album;
                 galleryDbContext.Photos.Add(entity);
   
                 galleryDbContext.SaveChanges();
@@ -76,7 +78,7 @@ namespace iw5_2018_team20.BL.Repositories
             }
         }
 
-        public void Update(PhotoDetailModel detail)
+        public PhotoDetailModel Update(PhotoDetailModel detail)
         {
             using (var galleryDbContext = new GalleryDbContext())
             {
@@ -88,10 +90,26 @@ namespace iw5_2018_team20.BL.Repositories
                 entity.Width = detail.Width;
                 entity.Height = detail.Height;
                 entity.Note = detail.Note;
-                entity.Album = detail.Album;
-                entity.ObjectsOnPhoto = detail.ObjectsOnPhoto;
+
+                if (detail.Album != null)
+                {
+                    var album = galleryDbContext.Albums.First(x => x.Id == detail.Album.Id);
+                    entity.Album = album;
+                }
+
+                foreach (var objectOnPhotoEntity in detail.ObjectsOnPhoto)
+                {
+                    var thing = galleryDbContext.Things.FirstOrDefault(x => x.Id == objectOnPhotoEntity.Object.Id);
+                    var person = galleryDbContext.Persons.FirstOrDefault(x => x.Id == objectOnPhotoEntity.Object.Id);
+                    if (thing != null)
+                        objectOnPhotoEntity.Object = thing;
+                    else if (person != null)
+                        objectOnPhotoEntity.Object = person;
+                }
 
                 galleryDbContext.SaveChanges();
+
+                return mapper.MapPhotoEntityToPhotoDetailModel(entity);
             }
         }
     }

@@ -15,14 +15,12 @@ namespace iw5_2018_team20.BL.Repositories
         {
             using (var galleryDbContext = new GalleryDbContext())
             {
-                return galleryDbContext.Persons
-                    .Select(x => mapper.MapPersonEntityToPersonListModel(x))
-                    .ToList();
+                var personEntites = galleryDbContext.Persons.ToList();
+                return personEntites.Select(mapper.MapPersonEntityToPersonListModel).ToList();
             }
         }
         
-        //TODO: jeste nevim jaky navratovy typ zde budeme potrebovat
-        public void Insert(PersonListModel person)
+        public PersonListModel Insert(PersonListModel person)
         {
             using (var galleryDbContext = new GalleryDbContext())
             {
@@ -31,6 +29,8 @@ namespace iw5_2018_team20.BL.Repositories
 
                 galleryDbContext.Persons.Add(entity);
                 galleryDbContext.SaveChanges();
+
+                return mapper.MapPersonEntityToPersonListModel(entity);
             }
         }
 

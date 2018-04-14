@@ -8,7 +8,7 @@ namespace iw5_2018_team20.BL.Models
     public class PhotoDetailModel : BaseModel
     {
         public string Name { get; set; }
-        public DateTime CreationTime { get; set; }
+        public DateTime CreationTime { get; set; } = DateTime.Now;
         public FormatType Format { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
