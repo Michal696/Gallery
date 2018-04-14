@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using iw5_2018_team20.BL;
 using iw5_2018_team20.BL.Models;
 using iw5_2018_team20.BL.Repositories;
 using iw5_2018_team20.DAL;
@@ -23,6 +25,7 @@ namespace iw5_2018_team20.Tests
         }
 
         private PhotoRepository photoRepositorySUT = new PhotoRepository();
+        private Mapper mapperSUT = new Mapper();
 
         [Fact]
         public void PhotoFindById_NotNull()
@@ -32,20 +35,48 @@ namespace iw5_2018_team20.Tests
         }
 
         [Fact]
-        public void PhotoInsert_NotNull()
+        public void PhotoInsert_Complex()
         {
+            AlbumEntity selfieAlbum;
+            ThingEntity someThing;
+            using (var context = new GalleryDbContext())
+            {
+                selfieAlbum = context.Albums.First();
+                someThing = context.Things.First();
+            }
+
+            ObjectOnPhotoEntity thingOnPhoto = new ObjectOnPhotoEntity()
+            {
+                PositionX = 1,
+                PositionY = 2,
+                Id = Guid.NewGuid(),
+                Object = someThing
+            };
+
+            Assert.NotNull(selfieAlbum);
+
             var detail = new PhotoDetailModel()
             {
-                Id = new Guid("8e141f54-7cfb-44b8-851a-232c8c489479"),
+                Id = Guid.NewGuid(),
                 Name = "TestovaciFotka",
-                CreationTime = new DateTime(2018, 11, 24),
+                CreationTime = DateTime.Now,
                 Format = FormatType.Jpg,
                 Height = 500,
                 Width = 352,
-                Note = "Nejaka druha dlouha poznamka."
+                Note = "Nejaka druha dlouha poznamka.",
+                Album = selfieAlbum,
+                ObjectsOnPhoto = { thingOnPhoto }
+
             };
             var photo = photoRepositorySUT.Insert(detail);
             Assert.NotNull(photo);
+
+            using (var context = new GalleryDbContext())
+            {
+                Assert.DoesNotContain(context.Albums.First().Photos, x => x.Name == "TatoTamFaktNejni");
+                Assert.Contains(context.Albums.First().Photos, x => x.Name == "TestovaciFotka");
+                Assert.Contains(context.Photos, x => x.Name == "TestovaciFotka");
+            }
         }
 
         private AlbumRepository albumRepositorySUT = new AlbumRepository();

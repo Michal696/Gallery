@@ -70,9 +70,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\packages\xunit.analyzers.0.7.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\iw5-2018-team20.BL\iw5-2018-team20.BL.csproj">
       <Project>{26036bf7-6863-4648-8706-37341ea535f7}</Project>
       <Name>iw5-2018-team20.BL</Name>
@@ -85,6 +82,9 @@
       <Project>{54876eee-cd7d-483f-936b-eb062567e8ea}</Project>
       <Name>iw5-2018-team20</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\xunit.analyzers.0.7.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

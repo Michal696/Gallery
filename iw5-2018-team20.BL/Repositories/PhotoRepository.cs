@@ -45,9 +45,20 @@ namespace iw5_2018_team20.BL.Repositories
                 entity.Id = Guid.NewGuid();
 
                 var album = galleryDbContext.Albums.First(x => x.Id == entity.Album.Id);
-                album.Photos.Add(entity);
+                foreach (var objectOnPhotoEntity in entity.ObjectsOnPhoto)
+                {
+                    var thing = galleryDbContext.Things.FirstOrDefault(x => x.Id == objectOnPhotoEntity.Object.Id);
+                    var person = galleryDbContext.Persons.FirstOrDefault(x => x.Id == objectOnPhotoEntity.Object.Id);
+                    if (thing != null)
+                        objectOnPhotoEntity.Object = thing;
 
+                    if (person != null)
+                        objectOnPhotoEntity.Object = person;
+                }
+
+                entity.Album = album;
                 galleryDbContext.Photos.Add(entity);
+  
                 galleryDbContext.SaveChanges();
 
                 return mapper.MapPhotoEntityToPhotoDetailModel(entity);
