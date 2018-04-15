@@ -78,7 +78,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="ViewModels\PhotoListViewModel.cs" />
+    <Compile Include="ViewModels\PhotosListViewModel.cs" />
+    <Compile Include="ViewModels\ThingsListViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

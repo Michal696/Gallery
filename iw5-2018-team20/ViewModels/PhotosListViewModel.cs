@@ -13,7 +13,7 @@ using iw5_2018_team20.Commands;
 
 namespace iw5_2018_team20.ViewModels
 {
-    public class PhotoListViewModel : ViewModelBase
+    public class PhotosListViewModel : ViewModelBase
     {
         private readonly PhotoRepository photoRepository;
         private readonly IMessenger messenger;
@@ -23,7 +23,7 @@ namespace iw5_2018_team20.ViewModels
 
         public ICommand SelectPhotoCommand { get; }
 
-        public PhotoListViewModel(PhotoRepository photoRepository, IMessenger messenger)
+        public PhotosListViewModel(PhotoRepository photoRepository, IMessenger messenger)
         {
             this.photoRepository = photoRepository;
             this.messenger = messenger;
