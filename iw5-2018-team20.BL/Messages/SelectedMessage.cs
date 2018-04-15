@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace iw5_2018_team20.BL.Messages
 {
-    public class SelectedThingMessage
+    public class SelectedMessage
     {
         public Guid Id { get; set; }
     }
 }
+    

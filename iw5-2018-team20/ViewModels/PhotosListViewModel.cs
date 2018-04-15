@@ -46,7 +46,7 @@ namespace iw5_2018_team20.ViewModels
         {
             if (parameter is PhotosListModel photo)
             {
-                messenger.Send(new SelectedPhotoMessage { Id = photo.Id });
+                messenger.Send(new SelectedMessage { Id = photo.Id });
             }
 
         }

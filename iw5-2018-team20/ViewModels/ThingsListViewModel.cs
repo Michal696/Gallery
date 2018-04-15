@@ -46,7 +46,7 @@ namespace iw5_2018_team20.ViewModels
         {
             if (parameter is ThingsListModel thing)
             {
-                messenger.Send(new SelectedThingMessage { Id = thing.Id });
+                messenger.Send(new SelectedMessage { Id = thing.Id });
             }
 
         }
