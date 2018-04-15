@@ -78,6 +78,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Commands\SaveAlbumCommand.cs" />
+    <Compile Include="ViewModels\AlbumDetailViewModel.cs" />
     <Compile Include="ViewModels\AlbumsListViewModel.cs" />
     <Compile Include="ViewModels\PersonListViewModel.cs" />
     <Compile Include="ViewModels\PhotosListViewModel.cs" />
