@@ -53,6 +53,7 @@
     <Compile Include="Messages\NewMessage.cs" />
     <Compile Include="Messages\SelectedMessage.cs" />
     <Compile Include="Messages\UpdatedAlbumMessage.cs" />
+    <Compile Include="Messages\UpdatedPhotoMessage.cs" />
     <Compile Include="Messenger.cs" />
     <Compile Include="Models\AlbumDetailModel.cs" />
     <Compile Include="Models\AlbumsListModel.cs" />

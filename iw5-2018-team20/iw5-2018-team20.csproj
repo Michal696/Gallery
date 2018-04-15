@@ -79,9 +79,11 @@
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\SaveAlbumCommand.cs" />
+    <Compile Include="Commands\SavePhotoCommand.cs" />
     <Compile Include="ViewModels\AlbumDetailViewModel.cs" />
     <Compile Include="ViewModels\AlbumsListViewModel.cs" />
     <Compile Include="ViewModels\PersonListViewModel.cs" />
+    <Compile Include="ViewModels\PhotoDetailViewModel.cs" />
     <Compile Include="ViewModels\PhotosListViewModel.cs" />
     <Compile Include="ViewModels\ThingsListViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
