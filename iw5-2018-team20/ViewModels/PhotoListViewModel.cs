@@ -21,14 +21,14 @@ namespace iw5_2018_team20.ViewModels
 
         public ObservableCollection<PhotosListModel> Photos { get; set; } = new ObservableCollection<PhotosListModel>();
 
-        public ICommand SelectRecipeCommand { get; }
+        public ICommand SelectPhotoCommand { get; }
 
         public PhotoListViewModel(PhotoRepository photoRepository, IMessenger messenger)
         {
             this.photoRepository = photoRepository;
             this.messenger = messenger;
 
-            SelectRecipeCommand = new RelayCommand(PhotoSelectionChanged);
+            SelectPhotoCommand = new RelayCommand(PhotoSelectionChanged);
         }
 
         public void OnLoad()
@@ -44,9 +44,9 @@ namespace iw5_2018_team20.ViewModels
 
         private void PhotoSelectionChanged(object parameter)
         {
-            if (parameter is PhotosListModel recipe)
+            if (parameter is PhotosListModel photo)
             {
-                messenger.Send(new SelectedPhotoMessage { Id = recipe.Id });
+                messenger.Send(new SelectedPhotoMessage { Id = photo.Id });
             }
 
         }
