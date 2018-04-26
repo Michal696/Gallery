@@ -29,7 +29,9 @@ namespace iw5_2018_team20.BL
                 Name = entity.Name,
                 CreationTime = entity.CreationTime,
                 Format = entity.Format,
-                Album = entity.Album
+                Album = entity.Album,
+                Height = entity.Height,
+                Width = entity.Width
             };
         }
 

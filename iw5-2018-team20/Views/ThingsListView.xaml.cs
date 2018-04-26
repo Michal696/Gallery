@@ -12,17 +12,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using iw5_2018_team20.ViewModels;
 
-namespace iw5_2018_team20
+namespace iw5_2018_team20.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ThingsListView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ThingsListView : UserControl
     {
-        public MainWindow()
+        public ThingsListView()
         {
             InitializeComponent();
+            Loaded += ThingsListView_Loaded;
+        }
+
+        private void ThingsListView_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (DataContext is ThingsListViewModel viewModel)
+            {
+                viewModel.OnLoad();
+            }
         }
     }
 }
