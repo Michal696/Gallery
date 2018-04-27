@@ -21,7 +21,7 @@ namespace iw5_2018_team20.BL.Models
 
         public string Path
         {
-            get { return "/Images" + Name; }
+            get { return "/Images/" + Name; }
         }
         public virtual ICollection<ObjectOnPhotoEntity> ObjectsOnPhoto { get; set; } = new List<ObjectOnPhotoEntity>();
     }
