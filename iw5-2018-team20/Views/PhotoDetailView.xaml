@@ -18,7 +18,7 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -44,7 +44,7 @@
             <Label Grid.Row="4" Grid.Column="0" Content="Poznámka:"></Label>
             <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Note}"></TextBlock>
 
-            <Image  Grid.Row="4" Grid.ColumnSpan="2" Source="{ Binding Path}" Grid.RowSpan="2"/>
+            <Image  Grid.Row="5" Source="{ Binding Path}" Grid.ColumnSpan="2"/>
 
             <Label Grid.Row="6" Grid.Column="0" Content="Objekty na fotografii"></Label>
 

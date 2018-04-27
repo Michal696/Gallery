@@ -23,7 +23,7 @@ namespace iw5_2018_team20.BL.Models
 
         public string Path
         {
-            get { return "/Images/" + Name + "." + Format; }
+            get { return "/Img/" + Name + "." + Format; }
             set { }
         }
      
