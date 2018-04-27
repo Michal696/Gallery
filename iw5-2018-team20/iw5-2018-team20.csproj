@@ -97,6 +97,9 @@
     <Compile Include="Views\PersonListView.xaml.cs">
       <DependentUpon>PersonListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PhotoDetailView.xaml.cs">
+      <DependentUpon>PhotoDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PhotoListView.xaml.cs">
       <DependentUpon>PhotoListView.xaml</DependentUpon>
     </Compile>
@@ -116,6 +119,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PersonListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PhotoDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

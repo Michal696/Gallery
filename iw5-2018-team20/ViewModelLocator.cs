@@ -42,5 +42,12 @@ namespace iw5_2018_team20
             return new ThingsListViewModel(thingRepository, messenger);
         }
 
+        public PhotoDetailViewModel PhotoDetailViewModel => CreatePhotoDetailViewModel();
+
+        private PhotoDetailViewModel CreatePhotoDetailViewModel()
+        {
+            return new PhotoDetailViewModel(photoRepository, messenger);
+        }
+
     }
 }
