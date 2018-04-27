@@ -3,25 +3,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:views="clr-namespace:iw5_2018_team20.Views"
         xmlns:viewModels="clr-namespace:iw5_2018_team20.ViewModels"
+        xmlns:views="clr-namespace:iw5_2018_team20.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="600"
-        >
-
+        Title="MainWindow"> 
     <Grid>
         <TabControl>
             <TabItem Header="Fotografie">
-                <views:PhotoListView />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid x:Name="ListColumnGrid" Grid.Column="0">
+                        <views:PhotoListView />
+                    </Grid>
+                    <views:PhotoDetailView Grid.Column="1"/>
+                </Grid>
             </TabItem>
-            <TabItem Header="Detail">
-
-            </TabItem>
+           
             <TabItem Header="Alba">
                 <views:AlbumsListView />
             </TabItem>
             <TabItem Header="Detail Alba">
-
+            
             </TabItem>
             <TabItem Header="Osoby">
                 <views:PersonListView/> 

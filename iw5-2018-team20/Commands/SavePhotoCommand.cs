@@ -13,7 +13,7 @@ namespace CookBook.App.Commands
         private readonly PhotoRepository photoRepository;
         private readonly PhotoDetailViewModel viewModel;
         private readonly IMessenger messenger;
-
+       
         public SavePhotoCommand(PhotoRepository photoRepository, PhotoDetailViewModel viewModel, IMessenger messenger)
         {
             this.photoRepository = photoRepository;

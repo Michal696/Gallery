@@ -18,7 +18,7 @@ namespace iw5_2018_team20.Views
     /// <summary>
     /// Interakční logika pro PhotoDetailView.xaml
     /// </summary>
-    public partial class PhotoDetailView : Page
+    public partial class PhotoDetailView : UserControl
     {
         public PhotoDetailView()
         {
