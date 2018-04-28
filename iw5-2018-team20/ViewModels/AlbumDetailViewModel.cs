@@ -5,12 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CookBook.App.Commands;
+using iw5_2018_team20.Commands;
 using iw5_2018_team20.BL;
 using iw5_2018_team20.BL.Messages;
 using iw5_2018_team20.BL.Models;
 using iw5_2018_team20.BL.Repositories;
-using iw5_2018_team20.Commands;
 namespace iw5_2018_team20.ViewModels
 {
     public class AlbumDetailViewModel : ViewModelBase

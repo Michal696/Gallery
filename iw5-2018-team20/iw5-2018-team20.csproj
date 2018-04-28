@@ -83,6 +83,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\DeleteObjectFromPhotoCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\SaveAlbumCommand.cs" />
     <Compile Include="Commands\SavePhotoCommand.cs" />
@@ -192,7 +193,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Img\ZdenekSelfie.Jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\TomasSelfie.Jpg" />
   </ItemGroup>

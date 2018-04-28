@@ -18,7 +18,10 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="2*"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -28,28 +31,65 @@
                 <ColumnDefinition Width="7*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Content="Název:"></Label>
+            <Label FontWeight="Bold" Grid.Row="0" Grid.Column="0" Content="Název:"></Label>
             <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}"></TextBlock>
 
-            <Label Grid.Row="1" Grid.Column="0" Content="Datum:"></Label>
+            <Label FontWeight="Bold" Grid.Row="1" Grid.Column="0" Content="Datum:"></Label>
             <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CreationTime}"></TextBlock>
 
-            <Label Grid.Row="2" Grid.Column="0" Content="Formát:"></Label>
+            <Label FontWeight="Bold" Grid.Row="2" Grid.Column="0" Content="Formát:"></Label>
             <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Format}"></TextBlock>
 
-            <Label Grid.Row="3" Grid.Column="0" Content="Rozlišení:"></Label>
+            <Label FontWeight="Bold" Grid.Row="3" Grid.Column="0" Content="Rozlišení:"></Label>
             <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Dimensions}"></TextBlock>
 
 
-            <Label Grid.Row="4" Grid.Column="0" Content="Poznámka:"></Label>
+            <Label FontWeight="Bold" Grid.Row="4" Grid.Column="0" Content="Poznámka:"></Label>
             <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Note}"></TextBlock>
 
-            <Image  Grid.Row="5" Source="{ Binding Path}" Grid.ColumnSpan="2"/>
+            <Label FontWeight="Bold" Grid.Row="5" Grid.Column="0" Content="Album:"></Label>
+            <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Album.Name}"></TextBlock>
 
-            <Label Grid.Row="6" Grid.Column="0" Content="Objekty na fotografii"></Label>
+            <Image  Grid.Row="6" Source="{ Binding Path}" Grid.ColumnSpan="2"/>
+            
+            <Label FontWeight="Bold" FontSize="20" Grid.Row="7" Grid.ColumnSpan="2" Content="Objekty na fotografii"></Label>
+            <Button Grid.Row="8" Grid.ColumnSpan="2" Content="Přidat objekt"/>
+            <Grid  Grid.Row="9" Grid.ColumnSpan="2" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Label FontWeight="Bold" Grid.Column="0" Content="Název nebo jm. a příjm."></Label>
+                <Label FontWeight="Bold" Grid.Column="1" Content="Souřadnice X"></Label>
+                <Label FontWeight="Bold" Grid.Column="2" Content="Souřadnice Y"></Label>
+            </Grid>
 
-       
+            <ItemsControl Grid.Row="10" Grid.ColumnSpan="2" ItemsSource="{Binding ObjectsOnPhoto}" Margin="10,0,-10,0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0">
+                                <Run Text="{Binding Object.Name}" />
+                                <Run Text="{Binding Object.Firstname}" />
+                                <Run Text=" " />
+                                <Run Text="{Binding Object.Surname}" />
+                            </TextBlock>
+                            <TextBlock Grid.Column="1" Text="{Binding PositionX}"/>
+                            <TextBlock Grid.Column="2" Text="{Binding PositionY}"/>
+                            <Button Grid.Column="3"  Content="Odebrat"/>
 
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </Grid>
     </Grid>
 

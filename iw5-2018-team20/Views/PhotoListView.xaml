@@ -18,30 +18,15 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid>
-        <ListBox x:Name="PhotosListBox" ItemsSource="{Binding AllPhotos}">
+    <DockPanel Margin="10">
+        <TextBox  DockPanel.Dock="Top" Height="25" Name="txtFilter" Text="{Binding Path=Filter, UpdateSourceTrigger=PropertyChanged}"/>
+        <ListView x:Name="PhotosListBox" ItemsSource="{Binding AllPhotos}" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <i:InvokeCommandAction Command="{Binding SelectPhotoCommand}"
                                            CommandParameter="{Binding ElementName=PhotosListBox, Path=SelectedItem}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Margin="8">
-                        <TextBlock Text="{Binding Name}" Style="{StaticResource PhotoListTextBlockStyle}"/>
-                        <TextBlock Text="{Binding Dimensions}" Style="{StaticResource PhotoListTextBlockStyle}"/>
-                        <TextBlock Text="{Binding Format}" Style="{StaticResource PhotoListTextBlockStyle}"/>
-
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    </Grid>
-
-    <!--   <DockPanel Margin="10">
-        <TextBox  DockPanel.Dock="Top" Height="25" Name="txtFilter" Text="{Binding Path=Filter, UpdateSourceTrigger=PropertyChanged}"/>
-        <ListView ItemsSource="{Binding AllPhotos}" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Nazev"  DisplayMemberBinding="{Binding Name}" />
@@ -51,7 +36,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-    </DockPanel> -->
-   
+    </DockPanel>
 
 </UserControl>
