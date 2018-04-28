@@ -6,7 +6,7 @@ using iw5_2018_team20.BL.Models;
 using iw5_2018_team20.BL.Repositories;
 using iw5_2018_team20.ViewModels;
 
-namespace CookBook.App.Commands
+namespace iw5_2018_team20.Commands
 {
     public class SaveAlbumCommand : ICommand
     {
