@@ -17,7 +17,8 @@ namespace iw5_2018_team20.BL.Repositories
             using (var galleryDbContext = new GalleryDbContext())
             {
                 var photo = galleryDbContext.Photos
-                    .Include(x => x.ObjectsOnPhoto)
+                    .Include(x => x.ObjectsOnPhoto.Select( y => y.Object))
+                    .Include(x => x.Album)
                     .FirstOrDefault(x => x.Id == id);
 
                 if (photo == null)

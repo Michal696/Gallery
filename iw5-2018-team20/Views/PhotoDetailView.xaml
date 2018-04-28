@@ -62,7 +62,12 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="{Binding PositionX}"/>
                             <TextBlock Grid.Column="1" Text="{Binding PositionY}"/>
-                            <TextBlock Grid.Column="2" Text="{Binding Object.Name}"/>
+                            <TextBlock Grid.Column="2">
+                                <Run Text="{Binding Object.Name}" />
+                                <Run Text="{Binding Object.Firstname}" />
+                                <Run Text=" " />
+                                <Run Text="{Binding Object.Surname}" />
+                            </TextBlock>
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
