@@ -6,7 +6,9 @@
         xmlns:viewModels="clr-namespace:iw5_2018_team20.ViewModels"
         xmlns:views="clr-namespace:iw5_2018_team20.Views"
         mc:Ignorable="d"
-        Title="MainWindow"> 
+        Title="MainWindow"
+        DataContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
+        d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=False}">
     <Grid>
         <TabControl>
             <TabItem Header="Fotografie">
