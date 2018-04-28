@@ -18,6 +18,7 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
@@ -44,11 +45,29 @@
             <Label Grid.Row="4" Grid.Column="0" Content="Poznámka:"></Label>
             <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Note}"></TextBlock>
 
-            <Image  Grid.Row="5" Source="{ Binding Path}" Grid.ColumnSpan="2"/>
+            <Label Grid.Row="5" Grid.Column="0" Content="Album:"></Label>
+            <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Album.Name}"></TextBlock>
 
-            <Label Grid.Row="6" Grid.Column="0" Content="Objekty na fotografii"></Label>
+            <Image  Grid.Row="6" Source="{ Binding Path}" Grid.ColumnSpan="2"/>
 
-       
+            <Label Grid.Row="7" Grid.Column="0" Content="Objekty na fotografii"></Label>
+            <ItemsControl Grid.Row="8" Grid.ColumnSpan="2" ItemsSource="{Binding ObjectsOnPhoto}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding PositionX}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding PositionY}"/>
+                            <TextBlock Grid.Column="2" Text="{Binding Object.Name}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
 
         </Grid>
     </Grid>
