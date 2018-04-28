@@ -191,7 +191,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Img\ZdenekSelfie.Jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\TomasSelfie.Jpg" />
   </ItemGroup>
