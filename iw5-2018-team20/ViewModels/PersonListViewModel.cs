@@ -17,6 +17,7 @@ namespace iw5_2018_team20.ViewModels
     {
         private readonly PersonRepository personRepository;
         private readonly IMessenger messenger;
+        private PersonListModel detail;
 
 
         public ObservableCollection<PersonListModel> Persons { get; set; } = new ObservableCollection<PersonListModel>();
@@ -29,6 +30,18 @@ namespace iw5_2018_team20.ViewModels
             this.messenger = messenger;
 
             SelectPersonCommand = new RelayCommand(PersonSelectionChanged);
+        }
+
+        public PersonListModel Detail
+        {
+            get { return detail; }
+            set
+            {
+                if (Equals(value, Detail)) return;
+
+                detail = value;
+                OnPropertyChanged();
+            }
         }
 
         public void OnLoad()

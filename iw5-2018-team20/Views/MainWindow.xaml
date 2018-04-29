@@ -7,7 +7,9 @@
         xmlns:views="clr-namespace:iw5_2018_team20.Views"
         mc:Ignorable="d"
         Title="MainWindow"
-        WindowStartupLocation="CenterScreen" WindowState="Maximized"> 
+        WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        DataContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
+        d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=False}">
     <Grid>
         <TabControl>
             <TabItem Header="Fotografie">
@@ -22,15 +24,29 @@
                     <views:PhotoDetailView Grid.Column="1"/>
                 </Grid>
             </TabItem>
-           
+
             <TabItem Header="Alba">
                 <views:AlbumsListView />
             </TabItem>
             <TabItem Header="Detail Alba">
-            
+
             </TabItem>
             <TabItem Header="Osoby">
-                <views:PersonListView/> 
+                <Grid x:Name="ListPersonColumnGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Content="Pridaj osobu" Command="{Binding CreatePersonCommand}"/>
+                        <views:PersonListView Grid.Row="1"/>
+                    </Grid>
+                    <views:PersonAddListView Grid.Column="1" MaxWidth="{Binding ElementName=ListPersonColumnGrid, Path=ActualWidth}"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Predmety">
                 <views:ThingsListView/>
