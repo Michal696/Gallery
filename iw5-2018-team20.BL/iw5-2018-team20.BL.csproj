@@ -51,6 +51,7 @@
     <Compile Include="Mapper.cs" />
     <Compile Include="Messages\DeleteAlbumMessage.cs" />
     <Compile Include="Messages\DeleteMessage.cs" />
+    <Compile Include="Messages\DeletePersonListsMessage.cs" />
     <Compile Include="Messages\DeletePhotoMessage.cs" />
     <Compile Include="Messages\NewMessage.cs" />
     <Compile Include="Messages\SelectedMessage.cs" />

@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Input;
 using iw5_2018_team20.BL;
 using iw5_2018_team20.BL.Messages;
 using iw5_2018_team20.BL.Models;
 using iw5_2018_team20.BL.Repositories;
 using iw5_2018_team20.Commands;
+using iw5_2018_team20.DAL.Entities;
 
 namespace iw5_2018_team20.ViewModels
 {
@@ -17,33 +20,56 @@ namespace iw5_2018_team20.ViewModels
     {
         private readonly PersonRepository personRepository;
         private readonly IMessenger messenger;
-        private PersonListModel detail;
+        public string Firstname { get; set; }
+        public string Surname { get; set; }
+
+        public Guid SelectedPerson { get; set; }
 
 
         public ObservableCollection<PersonListModel> Persons { get; set; } = new ObservableCollection<PersonListModel>();
 
+        
         public ICommand SelectPersonCommand { get; }
-
-
+        public ICommand DeletePersonCommand { get; }
+        
         public PersonListViewModel(PersonRepository personRepository, IMessenger messenger)
         {
+
+            Firstname = "Zadaj prve meno";
+            Surname = "Zadaj prezvisko";
+
+            personRepository = new PersonRepository();
+
+            List<PersonListModel> persons = personRepository.GetAll();
+
             this.personRepository = personRepository;
             this.messenger = messenger;
 
-            SelectPersonCommand = new RelayCommand(PersonSelectionChanged);
+            DeletePersonCommand = new RelayCommand(DeletePersonInList);
+            SelectPersonCommand = new RelayCommand(SelectPersonInList);
         }
 
-        public PersonListModel Detail
-        {
-            get { return detail; }
-            set
+        void SelectPersonInList(object param)
             {
-                if (Equals(value, Detail)) return;
-
-                detail = value;
-                OnPropertyChanged();
+                if (param is PersonListModel m)
+                {
+                    SelectedPerson = m.Id;                    
+                }
             }
+
+        void DeletePersonInList()
+        {
+            if (SelectedPerson != null) {
+                personRepository.Remove(SelectedPerson);
+                messenger.Send(new DeletePersonListsMessage()
+                {
+                    Id = SelectedPerson
+                });
+            }
+            else
+                Console.WriteLine("No person is selected.");
         }
+
 
         public void OnLoad()
         {
@@ -64,6 +90,7 @@ namespace iw5_2018_team20.ViewModels
             }
 
         }
+
 
     }
 }

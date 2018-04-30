@@ -34,8 +34,8 @@
             <TabItem Header="Osoby">
                 <Grid x:Name="ListPersonColumnGrid">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
                         <Grid.RowDefinitions>
@@ -45,7 +45,7 @@
                         <Button Content="Pridaj osobu" Command="{Binding CreatePersonCommand}"/>
                         <views:PersonListView Grid.Row="1"/>
                     </Grid>
-                    <views:PersonAddListView Grid.Column="1" MaxWidth="{Binding ElementName=ListPersonColumnGrid, Path=ActualWidth}"/>
+                    <views:PersonAddListView Grid.Column="1"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Predmety">

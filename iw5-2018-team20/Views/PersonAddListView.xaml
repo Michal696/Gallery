@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:iw5_2018_team20.ViewModels"
-        mc:Ignorable="d" 
         DataContext="{Binding PersonListViewModel, Source={StaticResource ViewModelLocator}}"
+        mc:Ignorable="d" 
         d:DataContext="{d:DesignInstance viewModels:PersonListViewModel, IsDesignTimeCreatable=False}"
         d:DesignWidth="400"
         d:DesignHeight="200">
@@ -23,7 +23,6 @@
 
         <Grid ShowGridLines="True" Grid.Row="1" DataContext="{Binding Detail}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
