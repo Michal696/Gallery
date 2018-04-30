@@ -29,8 +29,14 @@
             </i:Interaction.Triggers>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Nazev"  DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Datum" DisplayMemberBinding="{Binding CreationTime}"/>
+                    <GridViewColumn  DisplayMemberBinding="{Binding Name}" >
+                        <GridViewColumnHeader Content="Nazev"
+                                              Command="{Binding SortByNameCommand}"></GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding CreationTime}">
+                        <GridViewColumnHeader Content="Datum"
+                                              Command="{Binding SortByTimeCommand}"></GridViewColumnHeader>
+                    </GridViewColumn>
                     <GridViewColumn Header="Rozliseni" DisplayMemberBinding="{Binding Dimensions}"/>
                     <GridViewColumn Header="Format" DisplayMemberBinding="{Binding Format}"/>
                 </GridView>

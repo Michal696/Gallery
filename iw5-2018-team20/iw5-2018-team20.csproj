@@ -87,7 +87,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\AddNewObjectOnPhotoCommand.cs" />
-    <Compile Include="Commands\DeleteObjectOnPhotoCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\SaveAlbumCommand.cs" />
     <Compile Include="Commands\SavePhotoCommand.cs" />

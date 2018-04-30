@@ -24,6 +24,8 @@ namespace iw5_2018_team20.ViewModels
         public ObservableCollection<PhotosListModel> Photos { get; set; } = new ObservableCollection<PhotosListModel>();
 
         public ICommand SelectPhotoCommand { get; }
+        public ICommand SortByNameCommand { get; }
+        public ICommand SortByTimeCommand { get; }
 
         public PhotosListViewModel(PhotoRepository photoRepository, IMessenger messenger)
         {
@@ -35,6 +37,31 @@ namespace iw5_2018_team20.ViewModels
             CvsPhotos.Filter += ApplyFilter;
 
             SelectPhotoCommand = new RelayCommand(PhotoSelectionChanged);
+            SortByNameCommand = new RelayCommand(SortByName);
+            SortByTimeCommand = new RelayCommand(SortByTime);
+        }
+
+        void SortByName()
+        {
+            List<PhotosListModel> listModels = Photos.ToList();
+            listModels.Sort((emp1, emp2) => emp1.Name.CompareTo(emp2.Name));
+            Photos.Clear();
+            foreach (var photosListModel in listModels)
+            {
+                Photos.Add(photosListModel);
+            }
+        }
+
+        void SortByTime()
+        {
+            Console.WriteLine("Sorting by time");
+            List<PhotosListModel> listModels = Photos.ToList();
+            listModels.Sort((emp1, emp2) => emp1.CreationTime.CompareTo(emp2.CreationTime));
+            Photos.Clear();
+            foreach (var photosListModel in listModels)
+            {
+                Photos.Add(photosListModel);
+            }
         }
 
         public void OnLoad()
