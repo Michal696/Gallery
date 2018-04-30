@@ -34,7 +34,13 @@ namespace iw5_2018_team20.ViewModels
         public ObservableCollection<ObjectOnPhotoModel> PersonsOnPhoto { get; set; } = new ObservableCollection<ObjectOnPhotoModel>();
 
         public ObservableCollection<ObjectsListModel> AllObjects { get; set; } = new ObservableCollection<ObjectsListModel>();
-        public ICommand DeleteObjectOnPhotoCommand { get; }
+        public ICommand DeletePersonOnPhotoCommand { get; }
+        public ICommand DeleteThingOnPhotoCommand { get; }
+        public ICommand ThingSelectionChanged { get; }
+        public ICommand PersonSelectionChanged { get; }
+
+        private ObjectOnPhotoModel selectedPerson;
+        private ObjectOnPhotoModel selectedThing;
         public AddNewObjectOnPhotoCommand AddNewObject { get; }
 
         public ObjectsOnPhotoViewModel(PhotoRepository photoRepository, IMessenger messenger)
@@ -65,17 +71,64 @@ namespace iw5_2018_team20.ViewModels
                     Name = personsListModel.Firstname + " " + personsListModel.Surname
                 });
             }
-        
+
 
             this.photoRepository = photoRepository;
             this.messenger = messenger;
 
-            DeleteObjectOnPhotoCommand = new DeleteObjectOnPhotoCommand(this, photoRepository, messenger);
+            DeletePersonOnPhotoCommand = new RelayCommand(DeletePersonOnPhoto);
+            PersonSelectionChanged = new RelayCommand(selectPerson);
+
+            DeleteThingOnPhotoCommand = new RelayCommand(DeleteThingOnPhoto);
+            ThingSelectionChanged = new RelayCommand(selectThing);
+
             AddNewObject = new AddNewObjectOnPhotoCommand(this, photoRepository, Detail, messenger);
 
             this.messenger.Register<SelectedMessage>(SelectedPhoto);
             this.messenger.Register<NewMessage>(NewPhotoMessageReceived);
             this.messenger.Register<UpdateDetailListsMessage>(UpdateLists);
+        }
+        void selectThing(object param)
+        {
+            if (param is ObjectOnPhotoModel m)
+            {
+                selectedThing = m;
+            }
+        }
+
+        void DeleteThingOnPhoto()
+        {
+            if (selectedThing != null)
+                DeleteObjectOnPhoto(selectedThing);
+            else
+                Console.WriteLine("No thing is selected.");
+        }
+
+        void selectPerson(object param)
+        {
+            if (param is ObjectOnPhotoModel m)
+            {
+                selectedPerson = m;
+            }
+        }
+
+        void DeletePersonOnPhoto()
+        {
+            if (selectedPerson != null)
+                DeleteObjectOnPhoto(selectedPerson);
+            else
+                Console.WriteLine("No person is selected.");
+        }
+
+        void DeleteObjectOnPhoto(ObjectOnPhotoModel m)
+        {
+            Detail.ObjectsOnPhoto.Remove(m);
+            photoRepository.Update(Detail);
+
+            messenger.Send(new UpdateDetailListsMessage()
+            {
+                Id = Detail.Id
+            });
         }
 
         public void OnLoad()

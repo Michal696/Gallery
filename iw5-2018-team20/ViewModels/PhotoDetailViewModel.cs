@@ -54,7 +54,7 @@ namespace iw5_2018_team20.ViewModels
 
                 Detail = new PhotoDetailModel();
                 photoRepository.Remove(photoId);
-                messenger.Send(new DeleteMessage(photoId));
+                messenger.Send(new DeletePhotoMessage(photoId));
             }
         }
 

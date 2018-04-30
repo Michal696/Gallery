@@ -4,13 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:iw5_2018_team20.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              DataContext="{Binding ObjectsOnPhotoViewModel, Source={StaticResource ViewModelLocator}}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="100"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -27,23 +30,38 @@
         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=InputPosX}"></TextBox>
         <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding Path=InputPosY}"></TextBox>
         <Button Grid.Row="0" Grid.Column="3" Command="{Binding AddNewObject}" Content="Přidat nový objekt."></Button>
-        <ListView Grid.Row="1" Grid.ColumnSpan="4" ItemsSource="{Binding PersonsOnPhoto}" >
+        <Button Grid.Row="1" Grid.Column="3" Content="Oddelat osobu" Command="{Binding DeletePersonOnPhotoCommand}"/>
+        <ListView Name="PersonsListView" Grid.Row="2" Grid.ColumnSpan="4" ItemsSource="{Binding PersonsOnPhoto}" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding PersonSelectionChanged}"
+                                           CommandParameter="{Binding ElementName=PersonsListView, Path=SelectedItem}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Jmeno" DisplayMemberBinding="{Binding Object.Firstname}"/>
-                    <GridViewColumn Header="Prijmeni" DisplayMemberBinding="{Binding Object.Surname}"/>
-                    <GridViewColumn Header="Pozice X"  DisplayMemberBinding="{Binding PositionX}" />
-                    <GridViewColumn Header="Pozice Y" DisplayMemberBinding="{Binding PositionY}"/>
+                    <GridViewColumn Width="100" Header="Jmeno" DisplayMemberBinding="{Binding Object.Firstname}"/>
+                    <GridViewColumn Width="100" Header="Prijmeni" DisplayMemberBinding="{Binding Object.Surname}"/>
+                    <GridViewColumn Width="100" Header="Pozice X"  DisplayMemberBinding="{Binding PositionX}" />
+                    <GridViewColumn Width="100" Header="Pozice Y" DisplayMemberBinding="{Binding PositionY}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-
-        <ListView  Grid.Row="2" Grid.ColumnSpan="4"   ItemsSource="{Binding ThingsOnPhoto}" >
+        <Button Grid.Row="3" Grid.Column="3" Content="Oddelat vec" Command="{Binding DeleteThingOnPhotoCommand}"/>
+        <ListView Name="ThingsListView" Grid.Row="4" Grid.ColumnSpan="4"   ItemsSource="{Binding ThingsOnPhoto}" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding ThingSelectionChanged}"
+                                           CommandParameter="{Binding ElementName=ThingsListView, Path=SelectedItem}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Nazev veci" DisplayMemberBinding="{Binding Object.Name}"/>
-                    <GridViewColumn Header="Pozice X"  DisplayMemberBinding="{Binding PositionX}" />
-                    <GridViewColumn Header="Pozice Y" DisplayMemberBinding="{Binding PositionY}"/>
+                    <GridViewColumn Width="100" Header="Nazev veci" DisplayMemberBinding="{Binding Object.Name}"/>
+                    <GridViewColumn Width="100"  />
+                    <GridViewColumn Width="100" Header="Pozice X"  DisplayMemberBinding="{Binding PositionX}" />
+                    <GridViewColumn Width="100" Header="Pozice Y" DisplayMemberBinding="{Binding PositionY}"/>
+
                 </GridView>
             </ListView.View>
         </ListView>
