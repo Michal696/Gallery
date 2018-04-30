@@ -24,6 +24,7 @@ namespace iw5_2018_team20.ViewModels
 
         public ICommand SelectPersonCommand { get; }
 
+
         public PersonListViewModel(PersonRepository personRepository, IMessenger messenger)
         {
             this.personRepository = personRepository;
