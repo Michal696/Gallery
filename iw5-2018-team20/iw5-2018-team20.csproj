@@ -101,6 +101,9 @@
     <Compile Include="ViewModels\PhotosListViewModel.cs" />
     <Compile Include="ViewModels\ThingsListViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\AlbumDetailView.xaml.cs">
+      <DependentUpon>AlbumDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AlbumsListView.xaml.cs">
       <DependentUpon>AlbumsListView.xaml</DependentUpon>
     </Compile>
@@ -126,6 +129,10 @@
     <Compile Include="Views\ThingsListView.xaml.cs">
       <DependentUpon>ThingsListView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AlbumDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AlbumsListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -18,7 +18,6 @@ namespace iw5_2018_team20.ViewModels
         private readonly AlbumRepository albumRepository;
         private readonly IMessenger messenger;
 
-
         public ObservableCollection<AlbumsListModel> Albums { get; set; } = new ObservableCollection<AlbumsListModel>();
 
         public ICommand SelectAlbumCommand { get; }
@@ -46,7 +45,7 @@ namespace iw5_2018_team20.ViewModels
         {
             if (parameter is AlbumsListModel album)
             {
-                messenger.Send(new SelectedMessage { Id = album.Id });
+                messenger.Send(new SelectedAlbumMessage { Id = album.Id });
             }
 
         }
