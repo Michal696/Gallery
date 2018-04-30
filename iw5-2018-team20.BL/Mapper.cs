@@ -1,4 +1,5 @@
-﻿using iw5_2018_team20.BL.Models;
+﻿using System.Collections.Generic;
+using iw5_2018_team20.BL.Models;
 using iw5_2018_team20.BL.Repositories;
 using iw5_2018_team20.DAL.Entities;
 
@@ -18,9 +19,34 @@ namespace iw5_2018_team20.BL
                 Height = entity.Height,
                 Note = entity.Note,
                 Width = entity.Width,
-                ObjectsOnPhoto = entity.ObjectsOnPhoto
+                ObjectsOnPhoto = MapObjectsOnPhotoEntityToModelList(entity.ObjectsOnPhoto)
             };
         }
+
+        public ICollection<ObjectOnPhotoModel> MapObjectsOnPhotoEntityToModelList(
+            ICollection<ObjectOnPhotoEntity> entities)
+        {
+            List<ObjectOnPhotoModel> toReturn = new List<ObjectOnPhotoModel>();
+            foreach (var objectOnPhotoEntity in entities)
+            {
+                toReturn.Add(MapObjectOnPhotoEntityToModel(objectOnPhotoEntity));
+            }
+
+            return toReturn;
+        }
+
+        public ObjectOnPhotoModel MapObjectOnPhotoEntityToModel(ObjectOnPhotoEntity entity)
+        {
+            return new ObjectOnPhotoModel()
+            {
+                Id = entity.Id,
+                Object = entity.Object,
+                Photo = entity.Photo,
+                PositionY = entity.PositionY,
+                PositionX = entity.PositionX
+            };
+        }
+
 
         public PhotosListModel MapPhotoEntityToPhotoListModel(PhotoEntity entity)
         {
@@ -48,7 +74,30 @@ namespace iw5_2018_team20.BL
                 Height = model.Height,
                 Note = model.Note,
                 Width = model.Width,
-                ObjectsOnPhoto = model.ObjectsOnPhoto
+                ObjectsOnPhoto = MapObjectsOnPhotoModelToEnityList(model.ObjectsOnPhoto)
+            };
+        }
+
+        public ICollection<ObjectOnPhotoEntity> MapObjectsOnPhotoModelToEnityList(
+            ICollection<ObjectOnPhotoModel> models)
+        {
+            List<ObjectOnPhotoEntity> toReturn = new List<ObjectOnPhotoEntity>();
+            foreach (var objectOnPhotoModel in models)
+            {
+                toReturn.Add(MapObjectOnPhotoModelToEntity(objectOnPhotoModel));
+            }
+
+            return toReturn;
+        }
+
+        public ObjectOnPhotoEntity MapObjectOnPhotoModelToEntity(ObjectOnPhotoModel entity)
+        {
+            return new ObjectOnPhotoEntity()
+            {
+                Object = entity.Object,
+                Photo = entity.Photo,
+                PositionY = entity.PositionY,
+                PositionX = entity.PositionX
             };
         }
 

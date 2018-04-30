@@ -27,6 +27,6 @@ namespace iw5_2018_team20.BL.Models
             set { }
         }
      
-        public virtual ICollection<ObjectOnPhotoEntity> ObjectsOnPhoto { get; set; } = new List<ObjectOnPhotoEntity>();
+        public virtual ICollection<ObjectOnPhotoModel> ObjectsOnPhoto { get; set; } = new List<ObjectOnPhotoModel>();
     }
 }
