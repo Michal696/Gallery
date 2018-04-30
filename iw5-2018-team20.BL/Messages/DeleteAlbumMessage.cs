@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace iw5_2018_team20.BL.Messages
 {
-    public class DeleteMessage
+    public class DeleteAlbumMessage
     {
-        public DeleteMessage(Guid exampleId)
+        public DeleteAlbumMessage(Guid albumId)
         {
-            ExampleId = exampleId;
+            AlbumId = albumId;
         }
 
-        public Guid ExampleId { get; set; }
+        public Guid AlbumId { get; set; }
     }
 }

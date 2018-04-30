@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace iw5_2018_team20.BL.Messages
 {
-    public class DeleteMessage
+    public class DeletePhotoMessage
     {
-        public DeleteMessage(Guid exampleId)
+
+        public DeletePhotoMessage(Guid photoId)
         {
-            ExampleId = exampleId;
+            PhotoId = photoId;
         }
 
-        public Guid ExampleId { get; set; }
+        public Guid PhotoId { get; set; }
+        
     }
 }
