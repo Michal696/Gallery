@@ -19,10 +19,12 @@ namespace iw5_2018_team20.DAL.Entities
 
     public enum FormatType
     {
-        Jpeg,
-        Jpg,
-        Png,
-        Svn,
-        Gif
+        jpeg,
+        png,
+        gif,
+        bmp,
+        icon,
+        unknown
+
     }
 }

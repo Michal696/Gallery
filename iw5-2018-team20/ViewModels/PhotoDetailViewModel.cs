@@ -19,6 +19,9 @@ namespace iw5_2018_team20.ViewModels
         private readonly IMessenger messenger;
         private PhotoDetailModel detail;
 
+        public string PoznamkaInput { get; set; }
+
+
         public PhotoDetailModel Detail
         {
             get { return detail; }
@@ -52,7 +55,7 @@ namespace iw5_2018_team20.ViewModels
             {
                 var photoId = Detail.Id;
 
-                Detail = new PhotoDetailModel();
+                Detail = null;
                 photoRepository.Remove(photoId);
                 messenger.Send(new DeletePhotoMessage(photoId));
             }

@@ -21,12 +21,8 @@ namespace iw5_2018_team20.BL.Models
         public string Note { get; set; }
         public AlbumEntity Album { get; set; }
 
-        public string Path
-        {
-            get { return "/Img/" + Name + "." + Format; }
-            set { }
-        }
-     
+        public string Path { get; set; }
+
         public virtual ICollection<ObjectOnPhotoModel> ObjectsOnPhoto { get; set; } = new List<ObjectOnPhotoModel>();
     }
 }

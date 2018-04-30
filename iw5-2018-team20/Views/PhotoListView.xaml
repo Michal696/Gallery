@@ -17,31 +17,42 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
     </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0"  Margin="10">
+            <TextBox  DockPanel.Dock="Top" Height="25" Name="txtFilter" Text="{Binding Path=Filter, UpdateSourceTrigger=PropertyChanged}"/>
+            <ListView x:Name="PhotosListBox" ItemsSource="{Binding AllPhotos}" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectPhotoCommand}"
+                                               CommandParameter="{Binding ElementName=PhotosListBox, Path=SelectedItem}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn  DisplayMemberBinding="{Binding Name}" >
+                            <GridViewColumnHeader Content="Nazev"
+                                                  Command="{Binding SortByNameCommand}"></GridViewColumnHeader>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding CreationTime}">
+                            <GridViewColumnHeader Content="Datum"
+                                                  Command="{Binding SortByTimeCommand}"></GridViewColumnHeader>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Rozliseni" DisplayMemberBinding="{Binding Dimensions}"/>
+                        <GridViewColumn Header="Format" DisplayMemberBinding="{Binding Format}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
 
-    <DockPanel Margin="10">
-        <TextBox  DockPanel.Dock="Top" Height="25" Name="txtFilter" Text="{Binding Path=Filter, UpdateSourceTrigger=PropertyChanged}"/>
-        <ListView x:Name="PhotosListBox" ItemsSource="{Binding AllPhotos}" >
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectionChanged">
-                    <i:InvokeCommandAction Command="{Binding SelectPhotoCommand}"
-                                           CommandParameter="{Binding ElementName=PhotosListBox, Path=SelectedItem}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn  DisplayMemberBinding="{Binding Name}" >
-                        <GridViewColumnHeader Content="Nazev"
-                                              Command="{Binding SortByNameCommand}"></GridViewColumnHeader>
-                    </GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding CreationTime}">
-                        <GridViewColumnHeader Content="Datum"
-                                              Command="{Binding SortByTimeCommand}"></GridViewColumnHeader>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Rozliseni" DisplayMemberBinding="{Binding Dimensions}"/>
-                    <GridViewColumn Header="Format" DisplayMemberBinding="{Binding Format}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-    </DockPanel>
+            
+        </DockPanel>
+        <Grid Grid.Row="1" AllowDrop="True" Drop="OnDropMethod" Height="100" MinWidth="200" x:Name="Root">
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20pt">Přetáhněte nové obrázky sem</Label>
+        </Grid>
+    </Grid>
+    
 
 </UserControl>
