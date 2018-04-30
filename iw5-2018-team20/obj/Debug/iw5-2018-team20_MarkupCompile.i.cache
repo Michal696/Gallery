@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\sajdi\Source\Repos\Gallery\iw5-2018-team20\obj\Debug\
+C:\Users\Kukan\source\repos\Gallery\iw5-2018-team20\obj\Debug\
 iw5_2018_team20
 none
 false
 DEBUG;TRACE
-C:\Users\sajdi\Source\Repos\Gallery\iw5-2018-team20\App.xaml
-7710954860
+C:\Users\Kukan\source\repos\Gallery\iw5-2018-team20\App.xaml
+7-543846454
 
-29-1395002153
-23-587164036
-Views\AlbumsListView.xaml;Views\MainWindow.xaml;Views\PersonAddListView.xaml;Views\PersonListView.xaml;Views\PhotoDetailView.xaml;Views\PhotoListView.xaml;Views\ThingsListView.xaml;
+30-1481466206
+22-11766903
+Views\AlbumsListView.xaml;Views\MainWindow.xaml;Views\ObjectsOnPhotoView.xaml;Views\PersonListView.xaml;Views\PhotoDetailView.xaml;Views\PhotoListView.xaml;Views\ThingsListView.xaml;
 
-False
+True
 

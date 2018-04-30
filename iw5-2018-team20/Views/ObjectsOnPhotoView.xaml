@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="iw5_2018_team20.Views.ObjectsOnPhotoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:iw5_2018_team20.Views"
+             DataContext="{Binding ObjectsOnPhotoViewModel, Source={StaticResource ViewModelLocator}}"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <ComboBox Grid.Row="0" Grid.Column="0"
+                  ItemsSource="{Binding AllObjects}"
+                  DisplayMemberPath="Name"
+                  SelectedValuePath="Id"
+                  SelectedValue="{Binding Path=SelectedObject}" />
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=InputPosX}"></TextBox>
+        <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding Path=InputPosY}"></TextBox>
+        <Button Grid.Row="0" Grid.Column="3" Command="{Binding AddNewObject}" Content="Přidat nový objekt."></Button>
+        <ListView Grid.Row="1" Grid.ColumnSpan="4" ItemsSource="{Binding PersonsOnPhoto}" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Jmeno" DisplayMemberBinding="{Binding Object.Firstname}"/>
+                    <GridViewColumn Header="Prijmeni" DisplayMemberBinding="{Binding Object.Surname}"/>
+                    <GridViewColumn Header="Pozice X"  DisplayMemberBinding="{Binding PositionX}" />
+                    <GridViewColumn Header="Pozice Y" DisplayMemberBinding="{Binding PositionY}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView  Grid.Row="2" Grid.ColumnSpan="4"   ItemsSource="{Binding ThingsOnPhoto}" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nazev veci" DisplayMemberBinding="{Binding Object.Name}"/>
+                    <GridViewColumn Header="Pozice X"  DisplayMemberBinding="{Binding PositionX}" />
+                    <GridViewColumn Header="Pozice Y" DisplayMemberBinding="{Binding PositionY}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

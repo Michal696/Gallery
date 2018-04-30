@@ -17,6 +17,7 @@ namespace iw5_2018_team20.Tests
     {
 
         private PhotoRepository photoRepositorySUT = new PhotoRepository();
+        private Mapper mapper = new Mapper();
 
         [Fact]
         public void PhotoFindById_NotNull()
@@ -93,7 +94,7 @@ namespace iw5_2018_team20.Tests
             var detail = new PhotoDetailModel()
             {
                 Name = "ThingsTestPhoto",
-                ObjectsOnPhoto = {thingOnPhoto}
+                ObjectsOnPhoto = {mapper.MapObjectOnPhotoEntityToModel(thingOnPhoto)}
             };
 
             var photo = photoRepositorySUT.Insert(detail);
@@ -128,17 +129,47 @@ namespace iw5_2018_team20.Tests
         [Fact]
         public void PhotoUpdate()
         {
+            ThingEntity someThing;
+            using (var context = new GalleryDbContext())
+            {
+                someThing = context.Things.First();
+            }
+
+            ObjectOnPhotoModel thingOnPhoto = new ObjectOnPhotoModel()
+            {
+                PositionX = 111,
+                PositionY = 2,
+                Id = Guid.NewGuid(),
+                Object = someThing
+            };
+
+            ObjectOnPhotoModel thingOnPhoto2 = new ObjectOnPhotoModel()
+            {
+                PositionX = 1,
+                PositionY = 2,
+                Id = Guid.NewGuid(),
+                Object = someThing
+            };
+
             var detail = new PhotoDetailModel()
             {
-                Name = "UpdateTestPhotoStateBefore"
+                Name = "UpdateTestPhotoStateBefore",
+                ObjectsOnPhoto = {thingOnPhoto, thingOnPhoto2}
             };
 
             var photo = photoRepositorySUT.Insert(detail);
             Assert.NotNull(photo);
 
             photo.Name = "UpdateTestPhotoStateAfter";
+            photo.ObjectsOnPhoto = new List<ObjectOnPhotoModel>();
+            photo.ObjectsOnPhoto.Add(thingOnPhoto);
+
             var photoAfter = photoRepositorySUT.Update(photo);
             Assert.Equal("UpdateTestPhotoStateAfter", photoAfter.Name);
+            Assert.Equal(1, photoAfter.ObjectsOnPhoto.Count);
+            List<ObjectOnPhotoModel> list = (List<ObjectOnPhotoModel>) photoAfter.ObjectsOnPhoto;
+            Assert.Equal(111, list[0].PositionX);
+
 
             using (var context = new GalleryDbContext())
             {

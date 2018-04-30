@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ using iw5_2018_team20.BL.Models;
 using iw5_2018_team20.BL.Repositories;
 namespace iw5_2018_team20.ViewModels
 {
-    public class PhotoDetailViewModel : ViewModelBase
+    public class PhotoDetailViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private readonly PhotoRepository photoRepository;
         private readonly IMessenger messenger;

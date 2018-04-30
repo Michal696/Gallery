@@ -4,6 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:viewModels="clr-namespace:iw5_2018_team20.ViewModels"
+      xmlns:views="clr-namespace:iw5_2018_team20.Views"
       DataContext="{Binding PhotoDetailViewModel, Source={StaticResource ViewModelLocator}}"
       d:DataContext="{d:DesignInstance viewModels:PhotoDetailViewModel, IsDesignTimeCreatable=False}"
       mc:Ignorable="d" 
@@ -21,8 +22,6 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="40"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -51,45 +50,13 @@
             <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Album.Name}"></TextBlock>
 
             <Image  Grid.Row="6" Source="{ Binding Path}" Grid.ColumnSpan="2"/>
-            
+
             <Label FontWeight="Bold" FontSize="20" Grid.Row="7" Grid.ColumnSpan="2" Content="Objekty na fotografii"></Label>
-            <Button Grid.Row="8" Grid.ColumnSpan="2" Content="Přidat objekt"/>
-            <Grid  Grid.Row="9" Grid.ColumnSpan="2" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="3*"/>
-                </Grid.ColumnDefinitions>
-                <Label FontWeight="Bold" Grid.Column="0" Content="Název nebo jm. a příjm."></Label>
-                <Label FontWeight="Bold" Grid.Column="1" Content="Souřadnice X"></Label>
-                <Label FontWeight="Bold" Grid.Column="2" Content="Souřadnice Y"></Label>
+            <Grid  Grid.Row="8" Grid.ColumnSpan="2" >
+                <views:ObjectsOnPhotoView/>
             </Grid>
 
-            <ItemsControl Grid.Row="10" Grid.ColumnSpan="2" ItemsSource="{Binding ObjectsOnPhoto}" Margin="10,0,-10,0">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="3*"/>
-                                <ColumnDefinition Width="3*"/>
-                                <ColumnDefinition Width="3*"/>
-                                <ColumnDefinition Width="3*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0">
-                                <Run Text="{Binding Object.Name}" />
-                                <Run Text="{Binding Object.Firstname}" />
-                                <Run Text=" " />
-                                <Run Text="{Binding Object.Surname}" />
-                            </TextBlock>
-                            <TextBlock Grid.Column="1" Text="{Binding PositionX}"/>
-                            <TextBlock Grid.Column="2" Text="{Binding PositionY}"/>
-                            <Button Grid.Column="3"  Content="Odebrat"/>
-
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            
         </Grid>
     </Grid>
 

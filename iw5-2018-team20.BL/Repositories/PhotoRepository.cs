@@ -12,6 +12,8 @@ namespace iw5_2018_team20.BL.Repositories
     {
         Mapper mapper = new Mapper();
 
+
+
         public PhotoDetailModel FindById(Guid id)
         {
             using (var galleryDbContext = new GalleryDbContext())
@@ -97,21 +99,69 @@ namespace iw5_2018_team20.BL.Repositories
                     var album = galleryDbContext.Albums.First(x => x.Id == detail.Album.Id);
                     entity.Album = album;
                 }
-
-                foreach (var objectOnPhotoEntity in detail.ObjectsOnPhoto)
+                
+                foreach (var objectOnPhotoEntity in entity.ObjectsOnPhoto.ToList())
                 {
-                    var thing = galleryDbContext.Things.FirstOrDefault(x => x.Id == objectOnPhotoEntity.Object.Id);
-                    var person = galleryDbContext.Persons.FirstOrDefault(x => x.Id == objectOnPhotoEntity.Object.Id);
-                    if (thing != null)
-                        objectOnPhotoEntity.Object = thing;
-                    else if (person != null)
-                        objectOnPhotoEntity.Object = person;
+                    galleryDbContext.ObjectOnPhotoEntities.Remove(objectOnPhotoEntity);
+                    galleryDbContext.SaveChanges();
                 }
+
+                foreach (var objectOnPhotoModel in detail.ObjectsOnPhoto)
+                {
+
+                    var thing = galleryDbContext.Things.FirstOrDefault(x => x.Id == objectOnPhotoModel.Object.Id);
+                    var person = galleryDbContext.Persons.FirstOrDefault(x => x.Id == objectOnPhotoModel.Object.Id);
+                    if (thing != null)
+                    {
+                        galleryDbContext.ObjectOnPhotoEntities.Add(new ObjectOnPhotoEntity()
+                        {
+                            PositionX = objectOnPhotoModel.PositionX,
+                            PositionY = objectOnPhotoModel.PositionY,
+                            Id = Guid.NewGuid(),
+                            Object = thing,
+                            Photo = entity
+                        });
+                    }
+
+                    else if (person != null)
+                    {
+                        
+                        galleryDbContext.ObjectOnPhotoEntities.Add(new ObjectOnPhotoEntity()
+                        {
+                            PositionX = objectOnPhotoModel.PositionX,
+                            PositionY = objectOnPhotoModel.PositionY,
+                            Id = Guid.NewGuid(),
+                            Object = person,
+                            Photo = entity
+                        });
+                    }
+
+                    //galleryDbContext.SaveChanges();
+                }
+
 
                 galleryDbContext.SaveChanges();
 
                 return mapper.MapPhotoEntityToPhotoDetailModel(entity);
             }
         }
+
+        /*private void RemoveObjectOnPhotoById(ObjectOnPhotoEntity )
+        {
+            using (var galleryDbContext = new GalleryDbContext())
+            {
+                var entity = new ObjectOnPhotoEntity() { Id = id };
+                entity.Object = galleryDbContext.Persons.FirstOrDefault(x => x.Id == entity.Object.Id);
+                if (entity.Object == null)
+                {
+                    entity.Object = galleryDbContext.Things.FirstOrDefault(x => x.Id == entity.Object.Id);
+                }
+
+                galleryDbContext.ObjectOnPhotoEntities.Attach(entity);
+                galleryDbContext.ObjectOnPhotoEntities.Remove(entity);
+                galleryDbContext.SaveChanges();
+            }
+        }*/
+
     }
 }
