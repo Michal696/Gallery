@@ -95,6 +95,7 @@
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\AlbumDetailViewModel.cs" />
     <Compile Include="ViewModels\AlbumListViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ObjectsOnPhotoViewModel.cs" />
     <Compile Include="ViewModels\PersonListViewModel.cs" />
     <Compile Include="ViewModels\PhotoDetailViewModel.cs" />
@@ -109,6 +110,9 @@
     </Compile>
     <Compile Include="Views\ObjectsOnPhotoView.xaml.cs">
       <DependentUpon>ObjectsOnPhotoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PersonAddListView.xaml.cs">
+      <DependentUpon>PersonAddListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PersonListView.xaml.cs">
       <DependentUpon>PersonListView.xaml</DependentUpon>
@@ -137,6 +141,10 @@
     <Page Include="Views\ObjectsOnPhotoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PersonAddListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\PersonListView.xaml">
       <SubType>Designer</SubType>
