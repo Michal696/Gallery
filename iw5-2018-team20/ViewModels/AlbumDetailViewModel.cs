@@ -41,7 +41,7 @@ namespace iw5_2018_team20.ViewModels
             SaveAlbumCommand = new SaveAlbumCommand(albumRepository, this, messenger);
             DeleteAlbumCommand = new RelayCommand(DeleteAlbum);
 
-            this.messenger.Register<SelectedMessage>(SelectedAlbum);
+            this.messenger.Register<SelectedAlbumMessage>(SelectedAlbum);
             this.messenger.Register<NewMessage>(NewAlbumMessageReceived);
         }
 
@@ -62,7 +62,7 @@ namespace iw5_2018_team20.ViewModels
             Detail = new AlbumDetailModel();
         }
 
-        private void SelectedAlbum(SelectedMessage message)
+        private void SelectedAlbum(SelectedAlbumMessage message)
         {
             Detail = albumRepository.FindById(message.Id);
         }

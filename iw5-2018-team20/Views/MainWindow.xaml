@@ -16,7 +16,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Grid x:Name="ListColumnGrid" Grid.Column="0">
+                    <Grid x:Name="ListColumnGrid1" Grid.Column="0">
                         <views:PhotoListView />
                     </Grid>
                     <views:PhotoDetailView Grid.Column="1"/>
@@ -24,11 +24,18 @@
             </TabItem>
            
             <TabItem Header="Alba">
-                <views:AlbumsListView />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid x:Name="ListColumnGrid2" Grid.Column="0">
+                        <views:AlbumsListView />
+                    </Grid>
+                    <views:AlbumDetailView Grid.Column="1"/>
+                </Grid>
             </TabItem>
-            <TabItem Header="Detail Alba">
-            
-            </TabItem>
+           
             <TabItem Header="Osoby">
                 <views:PersonListView/> 
             </TabItem>
