@@ -10,17 +10,16 @@ using iw5_2018_team20.ViewModels;
 
 namespace iw5_2018_team20.Commands
 {
-    class DeleteObjectFromPhotoCommand : ICommand
+    public class DeleteObjectOnPhotoCommand : ICommand
     {
-        private readonly PersonRepository personRepository;
-        private readonly ThingRepository thingRepository;
+        private readonly PhotoRepository photoRepository;
         private readonly IMessenger messenger;
-        private readonly PhotoDetailViewModel viewModel;
+        private readonly ObjectsOnPhotoViewModel viewModel;
 
-        public DeleteObjectFromPhotoCommand(PersonRepository personRepository, ThingRepository thingRepository, IMessenger messenger)
+        public DeleteObjectOnPhotoCommand(ObjectsOnPhotoViewModel viewModel, PhotoRepository photoRepository, IMessenger messenger)
         {
-            this.thingRepository = thingRepository;
-            this.personRepository = personRepository;
+            this.viewModel = viewModel;
+            this.photoRepository = photoRepository;
             this.messenger = messenger;
         }
 
