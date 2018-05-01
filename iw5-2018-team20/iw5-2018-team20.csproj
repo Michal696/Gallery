@@ -113,9 +113,6 @@
     <Compile Include="Views\ObjectsOnPhotoView.xaml.cs">
       <DependentUpon>ObjectsOnPhotoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PersonAddListView.xaml.cs">
-      <DependentUpon>PersonAddListView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\PersonListView.xaml.cs">
       <DependentUpon>PersonListView.xaml</DependentUpon>
     </Compile>
@@ -128,9 +125,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Views\ThingsAddListView.xaml.cs">
-      <DependentUpon>ThingsAddListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ThingsListView.xaml.cs">
       <DependentUpon>ThingsListView.xaml</DependentUpon>
@@ -151,10 +145,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PersonAddListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\PersonListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -164,10 +154,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PhotoListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ThingsAddListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
