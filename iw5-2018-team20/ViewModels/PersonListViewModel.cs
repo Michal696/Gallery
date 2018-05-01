@@ -23,11 +23,7 @@ namespace iw5_2018_team20.ViewModels
         public string Firstname { get; set; }
         public string Surname { get; set; }
 
-        public Guid IDhelp;
-
-
-        public PersonListModel selectedPerson { get; set; }
-
+        private PersonListModel selectedPerson;
 
         public ObservableCollection<PersonListModel> Persons { get; set; } = new ObservableCollection<PersonListModel>();
 
@@ -58,11 +54,12 @@ namespace iw5_2018_team20.ViewModels
         }
 
         void SelectPersonInList(object param)
-            {
+            { // param is null
                 if (param is PersonListModel m)
                 {
-                    selectedPerson.Id = m.Id;
+                    selectedPerson = m;
                 }
+
             }
 
         void DeletePersonInList()
