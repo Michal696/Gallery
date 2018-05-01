@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace iw5_2018_team20.BL.Messages
 {
-    public class DeletePersonInListMessage 
+    public class DeleteThingsInListMessage
     {
-        public DeletePersonInListMessage(Guid personId)
+        public DeleteThingsInListMessage(Guid thingId)
         {
-            PersonId = personId;
+            ThingId = thingId;
         }
 
-        public Guid PersonId { get; set; }
+        public Guid ThingId { get; set; }
+        
     }
 }

@@ -54,7 +54,21 @@
                 </Grid> 
             </TabItem>
             <TabItem Header="Predmety">
-                <views:ThingsListView/>
+                <Grid x:Name="ListThingsColumnGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                    </Grid>
+                    <views:ThingsListView Grid.Row="1"/>
+                    <views:ThingsAddListView Grid.Column="1"/>
+                </Grid>
             </TabItem>
 
         </TabControl>

@@ -101,7 +101,7 @@ namespace iw5_2018_team20.ViewModels
                 Persons.Add(person);
             }
         }
-        void DeletePersonInList()///////////
+        void DeletePersonInList()
         {
             if (detail != null)
             {
@@ -110,8 +110,7 @@ namespace iw5_2018_team20.ViewModels
             }
             else
                 Console.WriteLine("No person is selected.");
-
-            //OnLoad();
+            
         }
 
         private void SelectedPerson(SelectedPersonMessage message)

@@ -53,10 +53,12 @@
     <Compile Include="Messages\DeleteMessage.cs" />
     <Compile Include="Messages\DeletePersonInListMessage.cs" />
     <Compile Include="Messages\DeletePhotoMessage.cs" />
+    <Compile Include="Messages\DeleteThingsInListMessage.cs" />
     <Compile Include="Messages\NewMessage.cs" />
     <Compile Include="Messages\SelectedAlbumMessage.cs" />
     <Compile Include="Messages\SelectedMessage.cs" />
     <Compile Include="Messages\SelectedPersonMessage.cs" />
+    <Compile Include="Messages\SelectedThingsMessage.cs" />
     <Compile Include="Messages\UpdatedAlbumMessage.cs" />
     <Compile Include="Messages\UpdateDetailListsMessage.cs" />
     <Compile Include="Messages\UpdatedPhotoMessage.cs" />
