@@ -10,7 +10,7 @@
         d:DesignWidth="400"
         d:DesignHeight="200">
 
-    <Grid  MinWidth="360" x:Name="Root" Visibility="{Binding Detail, Converter={StaticResource NullToVisibilityConverter}}">
+    <Grid  MinWidth="360" x:Name="Root2">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
