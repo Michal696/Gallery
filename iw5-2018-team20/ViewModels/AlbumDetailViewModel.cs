@@ -54,6 +54,7 @@ namespace iw5_2018_team20.ViewModels
                 Detail = null;
                 albumRepository.Remove(albumId);
                 messenger.Send(new DeleteAlbumMessage(albumId));
+                messenger.Send(new AlbumListUpdatedMessage());
             }
         }
 

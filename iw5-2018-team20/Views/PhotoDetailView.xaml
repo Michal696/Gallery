@@ -11,7 +11,7 @@
       d:DesignHeight="600"
       d:DesignWidth="400">
 
-    <Grid x:Name="Root" MinWidth="500"  Visibility="{Binding Detail, Converter={StaticResource NullToVisibilityConverter}}">
+    <Grid x:Name="Root" MinWidth="700"  Visibility="{Binding Detail, Converter={StaticResource NullToVisibilityConverter}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
@@ -41,7 +41,7 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -71,7 +71,7 @@
             <Label FontWeight="Bold" Grid.Row="5" Grid.Column="0" Content="Album:"></Label>
             <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Album.Name}"></TextBlock>
 
-            <Image  Grid.Row="6" Source="{ Binding Path}" Grid.ColumnSpan="2"/>
+            <Image Grid.Row="6" Source="{ Binding Path}" Grid.ColumnSpan="2"/>
             <Label FontWeight="Bold" FontSize="15" Grid.Row="7" Grid.ColumnSpan="2" Content="Objekty na fotografii"></Label>
             <Grid  Grid.Row="8" Grid.ColumnSpan="2" >
                 <views:ObjectsOnPhotoView/>

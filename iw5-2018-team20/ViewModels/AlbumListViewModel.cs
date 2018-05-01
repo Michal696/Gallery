@@ -71,6 +71,7 @@ namespace iw5_2018_team20.ViewModels
             album.Name = AlbumName;
             albumRepository.Insert(album);
             OnLoad();
+            messenger.Send(new AlbumListUpdatedMessage());
         }
 
     }
