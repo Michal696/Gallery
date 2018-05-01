@@ -14,10 +14,26 @@
     <Grid x:Name="Root" MinWidth="500"  Visibility="{Binding Detail, Converter={StaticResource NullToVisibilityConverter}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button  Grid.Row="0" Command="{Binding DeletePhotoCommand}" Content="Smazat fotku z galerie"></Button>
-        <Grid Grid.Row="1" DataContext="{Binding Detail}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+        <Button  Grid.Row="0"  Grid.ColumnSpan="2" Command="{Binding DeletePhotoCommand}" Content="Smazat fotku z galerie"></Button>
+        <Label FontWeight="Bold" Grid.Row="1" Grid.Column="0" Content="Poznámka:"></Label>
+        <TextBox Grid.Row="1" Text="{Binding Path=PoznamkaInput}" Grid.Column="1"></TextBox>
+        <Label FontWeight="Bold" Grid.Row="2" Grid.Column="0" Content="Album:"></Label>
+        <ComboBox Grid.Row="2" Grid.Column="1"
+                  ItemsSource="{Binding AllAlbums}"
+                  DisplayMemberPath="Name"
+                  SelectedValuePath="Id"
+                  SelectedValue="{Binding Path=SelectedObject}" />
+        <Button Grid.ColumnSpan="2" Grid.Row="3" Command="{Binding UpdatePhotoCommand}" Content="Uložit změny"></Button>
+        <Grid Grid.Row="4" Grid.ColumnSpan="2" DataContext="{Binding Detail}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
