@@ -95,6 +95,7 @@ namespace iw5_2018_team20.ViewModels
             {
                 thingRepository.Remove(detail.Id);
                 messenger.Send(new DeleteThingsInListMessage(detail.Id));
+                detail = null;
             }
             else
                 Console.WriteLine("No things is selected.");

@@ -105,8 +105,10 @@ namespace iw5_2018_team20.ViewModels
         {
             if (detail != null)
             {
+                
                 personRepository.Remove(detail.Id);
                 messenger.Send(new DeletePersonInListMessage(detail.Id));
+                detail = null;
             }
             else
                 Console.WriteLine("No person is selected.");
