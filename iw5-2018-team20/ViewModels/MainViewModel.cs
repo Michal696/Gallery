@@ -18,22 +18,18 @@ namespace iw5_2018_team20.ViewModels
 
         public string Name { get; set; } = "not_inserted";
         public ICommand CreatePhotoCommand { get; set; }
-        public ICommand CreatePersonCommand { get; set; }
+        
 
         public MainViewModel(IMessenger messenger)
         {
             this.messenger = messenger;
             CreatePhotoCommand = new RelayCommand(AddNewPhoto);
-            CreatePersonCommand = new RelayCommand(AddNewPerson);
         }
         private void AddNewPhoto()
         {
             messenger.Send(new NewMessage());
         }
-        private void AddNewPerson()
-        {
-            messenger.Send(new NewMessage());
-        }
+
 
         public void OnLoad()
         {

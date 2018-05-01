@@ -42,7 +42,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Button Content="Pridaj osobu" Command="{Binding CreatePersonCommand}"/>
+                        <!--<Button Content="Pridaj osobu" Command="{Binding UpdatePersonListCommand}"/>-->
                         <views:PersonListView Grid.Row="1"/>
                     </Grid>
                     <views:PersonAddListView Grid.Column="1"/>
