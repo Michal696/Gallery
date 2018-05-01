@@ -57,6 +57,15 @@ namespace iw5_2018_team20.BL.Repositories
                 var itemToRemove = galleryDbContext.Albums.SingleOrDefault(x => x.Id == id);
                 if (itemToRemove != null)
                 {
+                    var photosWithThisAlbum = galleryDbContext.Photos.Where(x => x.Album.Id == itemToRemove.Id)
+                        .ToList();
+                    foreach (var p in photosWithThisAlbum)
+                    {
+                        p.Album = null;
+                    }
+
+                    galleryDbContext.SaveChanges();
+
                     galleryDbContext.Albums.Remove(itemToRemove);
                     galleryDbContext.SaveChanges();
                 }

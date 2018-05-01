@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using iw5_2018_team20.ViewModels;
 
 namespace iw5_2018_team20.Views
 {
@@ -23,6 +24,15 @@ namespace iw5_2018_team20.Views
         public PhotoDetailView()
         {
             InitializeComponent();
+            Loaded += PhotoDetailView_Loaded;
+        }
+
+        private void PhotoDetailView_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (DataContext is PhotoDetailViewModel viewModel)
+            {
+                viewModel.OnLoad();
+            }
         }
     }
 }

@@ -46,18 +46,6 @@ namespace iw5_2018_team20.ViewModels
         {
             albumRepository = new AlbumRepository();
 
-            List<AlbumsListModel> albums = albumRepository.GetAll();
-
-            foreach (var albumListModel in albums)
-            {
-                AllAlbums.Add(new AlbumsListModel()
-                {
-                    Id = albumListModel.Id,
-                    Name = albumListModel.Name
-                });
-            }
-
-
             this.photoRepository = photoRepository;
             this.messenger = messenger;
 
@@ -67,6 +55,27 @@ namespace iw5_2018_team20.ViewModels
 
             this.messenger.Register<SelectedMessage>(SelectedPhoto);
             this.messenger.Register<NewMessage>(NewPhotoMessageReceived);
+            this.messenger.Register<AlbumListUpdatedMessage>(UpdatedAlbum);
+        }
+
+        void UpdatedAlbum(AlbumListUpdatedMessage m)
+        {
+            OnLoad();
+        }
+
+        public void OnLoad()
+        {
+            List<AlbumsListModel> albums = albumRepository.GetAll();
+
+            AllAlbums.Clear();
+            foreach (var albumListModel in albums)
+            {
+                AllAlbums.Add(new AlbumsListModel()
+                {
+                    Id = albumListModel.Id,
+                    Name = albumListModel.Name
+                });
+            }
         }
 
         private void DeletePhoto()
@@ -93,6 +102,8 @@ namespace iw5_2018_team20.ViewModels
             }
             Detail.Note = PoznamkaInput;
             photoRepository.Update(Detail);
+            Detail = photoRepository.FindById(Detail.Id);
+            OnLoad();
         }
 
         private void NewPhotoMessageReceived(NewMessage obj)
