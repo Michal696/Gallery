@@ -24,7 +24,7 @@ namespace iw5_2018_team20.Commands
         {
             this.viewModel = viewModel;
             this.personRepository = personRepository;
-            this.personListModel = new PersonListModel(); //personListModel;
+            this.personListModel =  personListModel;
             this.messenger = messenger;
         }
         public event EventHandler CanExecuteChanged
@@ -40,7 +40,7 @@ namespace iw5_2018_team20.Commands
 
         public void Execute(object parameter)
         {
-
+            personListModel = new PersonListModel();
             personListModel.Firstname = viewModel.Firstname;
             personListModel.Surname = viewModel.Surname;
 
@@ -50,7 +50,7 @@ namespace iw5_2018_team20.Commands
             {
                 Id = personListModel.Id
             });
-
+            viewModel.OnLoad();
         }
     }
 }
