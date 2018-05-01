@@ -17,8 +17,7 @@
         </Grid.RowDefinitions>
 
         <Menu>
-            <MenuItem Header="Save" Command="{Binding AddPersonCommand}" />
-            <MenuItem Header="Delete" Command="{Binding DeletePersonCommand}" />
+            <MenuItem Header="Přidat novou osobu" Command="{Binding AddPersonCommand}" />
         </Menu>
 
         <Grid ShowGridLines="True" Grid.Row="1">
@@ -31,10 +30,10 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0"  Content="Meno: "></Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Firstname}"></TextBox>
-            <Label Grid.Row="1" Grid.Column="0"  Content="Prezvisko: "></Label>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Surname}"></TextBox>
+            <Label Grid.Row="0" Grid.Column="0"  Content="Jmeno: "></Label>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Firstname, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label Grid.Row="1" Grid.Column="0"  Content="Prijmeni: "></Label>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </Grid>
     </Grid>
 </UserControl>

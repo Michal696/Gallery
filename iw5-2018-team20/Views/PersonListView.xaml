@@ -19,7 +19,14 @@
     </UserControl.Resources>
 
     <Grid>
-        <ListView x:Name="PersonListBox" ItemsSource="{Binding Persons}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Content="Vymazat vybranou osobu" Command="{Binding DeletePersonCommand}" />
+        <ListView Grid.Row="1" x:Name="PersonListBox" ItemsSource="{Binding Persons}" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <i:InvokeCommandAction Command="{Binding SelectPersonCommand}"
@@ -33,5 +40,22 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
+        <Grid ShowGridLines="True" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0"  Content="Jmeno: "></Label>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Firstname, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label Grid.Row="1" Grid.Column="0"  Content="Prijmeni: "></Label>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        </Grid>
+        <Button Grid.Row="3" Content="Přidat novou osobu" Command="{Binding AddPersonCommand}" />
     </Grid>
 </UserControl>

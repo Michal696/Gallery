@@ -17,8 +17,7 @@
         </Grid.RowDefinitions>
 
         <Menu>
-            <MenuItem Header="Save" Command="{Binding AddThingsCommand}" />
-            <MenuItem Header="Delete" Command="{Binding DeleteThingsCommand}" />
+            <MenuItem Header="Přidat nový předmět" Command="{Binding AddThingsCommand}" />
         </Menu>
 
         <Grid ShowGridLines="True" Grid.Row="1">
@@ -32,7 +31,7 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0"  Content="Nazov: "></Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}"></TextBox>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </Grid>
     </Grid>
 </UserControl>

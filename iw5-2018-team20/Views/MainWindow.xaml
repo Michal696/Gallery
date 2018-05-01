@@ -35,40 +35,12 @@
                     <views:AlbumDetailView Grid.Column="1"/>
                 </Grid>
             </TabItem>
-           
+
             <TabItem Header="Osoby">
-                <Grid x:Name="ListPersonColumnGrid">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>                        
-                        
-                    </Grid>
-                    <views:PersonListView Grid.Column="0"/>
-                    <views:PersonAddListView Grid.Column="1"/>
-                </Grid> 
+                <views:PersonListView />
             </TabItem>
             <TabItem Header="Predmety">
-                <Grid x:Name="ListThingsColumnGrid">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                    </Grid>
-                    <views:ThingsListView Grid.Column="0"/>
-                    <views:ThingsAddListView Grid.Column="1"/>
-                </Grid>
+                <views:ThingsListView />
             </TabItem>
 
         </TabControl>

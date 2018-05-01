@@ -46,8 +46,7 @@ namespace iw5_2018_team20.ViewModels
         public ICommand DeletePersonCommand { get; }
         
         public PersonListViewModel(PersonRepository personRepository, IMessenger messenger)
-        {
-
+        { 
             Firstname = "Zadaj prve meno";
             Surname = "Zadaj prezvisko";
 
@@ -81,6 +80,8 @@ namespace iw5_2018_team20.ViewModels
             person.Firstname = Firstname;
             person.Surname = Surname;
             personRepository.Insert(person);
+            
+            Persons = new ObservableCollection<PersonListModel>();
             OnLoad();
         }
 
@@ -94,7 +95,7 @@ namespace iw5_2018_team20.ViewModels
         public void OnLoad()
         {
             Persons.Clear();
-
+            
             var persons = personRepository.GetAll();
             foreach (var person in persons)
             {
