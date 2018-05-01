@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
 
         <Menu>
-            <MenuItem Header="Save" Command="{Binding SavePersonCommand}" />
+            <MenuItem Header="Save" Command="{Binding AddNewPerson}" />
             <MenuItem Header="Delete" />
         </Menu>
 

@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="IMessenger.cs" />
     <Compile Include="Mapper.cs" />
+    <Compile Include="Messages\AddNewPersonMessage.cs" />
     <Compile Include="Messages\DeleteAlbumMessage.cs" />
     <Compile Include="Messages\DeleteMessage.cs" />
     <Compile Include="Messages\DeletePersonListsMessage.cs" />

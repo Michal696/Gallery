@@ -23,7 +23,10 @@ namespace iw5_2018_team20.ViewModels
         public string Firstname { get; set; }
         public string Surname { get; set; }
 
-        public Guid SelectedPerson { get; set; }
+        public Guid IDhelp;
+
+
+        public PersonListModel selectedPerson { get; set; }
 
 
         public ObservableCollection<PersonListModel> Persons { get; set; } = new ObservableCollection<PersonListModel>();
@@ -31,7 +34,9 @@ namespace iw5_2018_team20.ViewModels
         
         public ICommand SelectPersonCommand { get; }
         public ICommand DeletePersonCommand { get; }
-        
+
+        public AddNewPersonInListCommand AddNewPerson { get; }
+
         public PersonListViewModel(PersonRepository personRepository, IMessenger messenger)
         {
 
@@ -47,23 +52,26 @@ namespace iw5_2018_team20.ViewModels
 
             DeletePersonCommand = new RelayCommand(DeletePersonInList);
             SelectPersonCommand = new RelayCommand(SelectPersonInList);
+            AddNewPerson = new AddNewPersonInListCommand(this, personRepository, selectedPerson, messenger);
+
+            this.messenger.Register<NewMessage>(NewPersonMessageReceived);
         }
 
         void SelectPersonInList(object param)
             {
                 if (param is PersonListModel m)
                 {
-                    SelectedPerson = m.Id;                    
+                    selectedPerson.Id = m.Id;
                 }
             }
 
         void DeletePersonInList()
         {
-            if (SelectedPerson != null) {
-                personRepository.Remove(SelectedPerson);
+            if (selectedPerson != null) {
+                personRepository.Remove(selectedPerson.Id);
                 messenger.Send(new DeletePersonListsMessage()
                 {
-                    Id = SelectedPerson
+                    Id = selectedPerson.Id
                 });
             }
             else
@@ -89,6 +97,10 @@ namespace iw5_2018_team20.ViewModels
                 messenger.Send(new SelectedMessage { Id = person.Id });
             }
 
+        }
+        private void NewPersonMessageReceived(NewMessage obj)
+        {
+            selectedPerson = new PersonListModel();
         }
 
 
