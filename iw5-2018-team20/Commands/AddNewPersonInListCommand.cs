@@ -24,7 +24,7 @@ namespace iw5_2018_team20.Commands
         {
             this.viewModel = viewModel;
             this.personRepository = personRepository;
-            this.personListModel = personListModel;
+            this.personListModel = new PersonListModel(); //personListModel;
             this.messenger = messenger;
         }
         public event EventHandler CanExecuteChanged

@@ -23,7 +23,7 @@ namespace iw5_2018_team20.ViewModels
         public string Firstname { get; set; }
         public string Surname { get; set; }
 
-        private PersonListModel selectedPerson;
+        private PersonListModel selectedPerson; //= new PersonListModel();
 
         public ObservableCollection<PersonListModel> Persons { get; set; } = new ObservableCollection<PersonListModel>();
 
@@ -50,13 +50,17 @@ namespace iw5_2018_team20.ViewModels
             SelectPersonCommand = new RelayCommand(SelectPersonInList);
             AddNewPerson = new AddNewPersonInListCommand(this, personRepository, selectedPerson, messenger);
 
-            this.messenger.Register<NewMessage>(NewPersonMessageReceived);
+            this.messenger.Register<NewPersonMessage>(NewPersonMessageReceived);
+            this.messenger.Register<SelectedMessage>(SelectedPerson);
+            this.messenger.Register<UpdatePersonListMessage>(UpdatePersonList);
+        
+            OnLoad();
         }
 
         void SelectPersonInList(object param)
-            { // param is null
+            { 
                 if (param is PersonListModel m)
-                {
+                { 
                     selectedPerson = m;
                 }
 
@@ -73,6 +77,8 @@ namespace iw5_2018_team20.ViewModels
             }
             else
                 Console.WriteLine("No person is selected.");
+
+            OnLoad();
         }
 
 
@@ -95,9 +101,31 @@ namespace iw5_2018_team20.ViewModels
             }
 
         }
-        private void NewPersonMessageReceived(NewMessage obj)
+        private void NewPersonMessageReceived(NewPersonMessage obj)
         {
             selectedPerson = new PersonListModel();
+        }
+
+        private void UpdatePersonList(UpdatePersonListMessage msg)
+        {
+            SelectedPerson(new SelectedMessage()
+            {
+                Id = msg.Id
+            });
+        }
+
+
+        private void SelectedPerson(SelectedMessage message)
+        {
+            selectedPerson = personRepository.GetById(message.Id);
+            AddNewPerson.personListModel = selectedPerson;
+
+            Persons.Clear();        
+            var persons = personRepository.GetAll();
+            foreach (var person in persons)
+            {
+                Persons.Add(person);
+            }
         }
 
 

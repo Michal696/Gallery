@@ -18,10 +18,10 @@
 
         <Menu>
             <MenuItem Header="Save" Command="{Binding AddNewPerson}" />
-            <MenuItem Header="Delete" />
+            <MenuItem Header="Delete" Command="{Binding DeletePersonCommand}" />
         </Menu>
 
-        <Grid ShowGridLines="True" Grid.Row="1" DataContext="{Binding Detail}">
+        <Grid ShowGridLines="True" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>

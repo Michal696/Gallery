@@ -55,10 +55,12 @@
     <Compile Include="Messages\DeletePersonListsMessage.cs" />
     <Compile Include="Messages\DeletePhotoMessage.cs" />
     <Compile Include="Messages\NewMessage.cs" />
+    <Compile Include="Messages\NewPersonMessage.cs" />
     <Compile Include="Messages\SelectedMessage.cs" />
     <Compile Include="Messages\UpdatedAlbumMessage.cs" />
     <Compile Include="Messages\UpdateDetailListsMessage.cs" />
     <Compile Include="Messages\UpdatedPhotoMessage.cs" />
+    <Compile Include="Messages\UpdatePersonListMessage.cs" />
     <Compile Include="Messenger.cs" />
     <Compile Include="Models\AlbumDetailModel.cs" />
     <Compile Include="Models\AlbumsListModel.cs" />
