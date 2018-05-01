@@ -21,6 +21,15 @@ namespace iw5_2018_team20.BL.Repositories
             }
         }
 
+        public ThingsListModel GetById(Guid Id)
+        {
+            using (var galleryDbContext = new GalleryDbContext())
+            {
+                var thingEntites = galleryDbContext.Things.FirstOrDefault(x=> x.Id == Id);
+                return mapper.MapThingEntityToThingsListModel(thingEntites);
+            }
+        }
+
         public ThingsListModel Insert(ThingsListModel thing)
         {
             using (var galleryDbContext = new GalleryDbContext())

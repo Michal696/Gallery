@@ -22,31 +22,95 @@ namespace iw5_2018_team20.ViewModels
         public ObservableCollection<ThingsListModel> Things { get; set; } = new ObservableCollection<ThingsListModel>();
 
         public ICommand SelectThingCommand { get; }
+        public string Name { get; set; }
+
+        private ThingsListModel detail;
+
+        public ThingsListModel Detail
+        {
+            get { return detail; }
+            set
+            {
+                if (Equals(value, Detail)) return;
+
+                detail = value;
+                OnPropertyChanged();
+            }
+        }     
+
+        public ICommand SelectThingsCommand { get; }
+        public ICommand AddThingsCommand { get; }
+        public ICommand DeleteThingsCommand { get; }
 
         public ThingsListViewModel(ThingRepository thingRepository, IMessenger messenger)
         {
+            Name = "Zadaj nazov";
             this.thingRepository = thingRepository;
             this.messenger = messenger;
 
-            SelectThingCommand = new RelayCommand(ThingSelectionChanged);
+            SelectThingsCommand = new RelayCommand(SelectThingsInList);
+            AddThingsCommand = new RelayCommand(AddThingsInList);
+            DeleteThingsCommand = new RelayCommand(DeleteThingsInList);
+
+            this.messenger.Register<DeleteThingsInListMessage>(Reload);
+            this.messenger.Register<SelectedThingsMessage>(SelectedThings);
+        }
+
+        private void SelectThingsInList(object parameter)
+        {
+            if (parameter is ThingsListModel things)
+            {
+                messenger.Send(new SelectedThingsMessage { Id = things.Id });
+            }
+
+        }
+
+        void AddThingsInList()
+        {
+            var things = new ThingsListModel();
+            things.Name = Name;
+            thingRepository.Insert(things);
+            OnLoad();
+        }
+
+
+
+        public void Reload(DeleteThingsInListMessage m)
+        {
+            OnLoad();
         }
 
         public void OnLoad()
         {
             Things.Clear();
-
             var things = thingRepository.GetAll();
             foreach (var thing in things)
             {
                 Things.Add(thing);
             }
         }
-
-        private void ThingSelectionChanged(object parameter)
+        void DeleteThingsInList()
         {
-            if (parameter is ThingsListModel thing)
+            if (detail != null)
             {
-                messenger.Send(new SelectedMessage { Id = thing.Id });
+                thingRepository.Remove(detail.Id);
+                messenger.Send(new DeleteThingsInListMessage(detail.Id));
+            }
+            else
+                Console.WriteLine("No things is selected.");
+
+        }
+
+        private void SelectedThings(SelectedThingsMessage message)
+        {
+            Detail = thingRepository.GetById(message.Id);
+        }
+
+        private void AlbumSelectionChanged(object parameter)
+        {
+            if (parameter is AlbumsListModel album)
+            {
+                messenger.Send(new SelectedAlbumMessage { Id = album.Id });
             }
 
         }

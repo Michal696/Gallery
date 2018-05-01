@@ -6,14 +6,14 @@ using iw5_2018_team20.BL.Models;
 using iw5_2018_team20.BL.Repositories;
 using iw5_2018_team20.ViewModels;
 
-namespace CookBook.App.Commands
+namespace iw5_2018_team20.Commands
 {
     public class SavePhotoCommand : ICommand
     {
         private readonly PhotoRepository photoRepository;
         private readonly PhotoDetailViewModel viewModel;
         private readonly IMessenger messenger;
-
+       
         public SavePhotoCommand(PhotoRepository photoRepository, PhotoDetailViewModel viewModel, IMessenger messenger)
         {
             this.photoRepository = photoRepository;

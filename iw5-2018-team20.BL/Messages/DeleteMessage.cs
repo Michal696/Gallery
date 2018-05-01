@@ -8,11 +8,11 @@ namespace iw5_2018_team20.BL.Messages
 {
     public class DeleteMessage
     {
-        public DeleteMessage(Guid recipeId)
+        public DeleteMessage(Guid exampleId)
         {
-            RecipeId = recipeId;
+            ExampleId = exampleId;
         }
 
-        public Guid RecipeId { get; set; }
+        public Guid ExampleId { get; set; }
     }
 }

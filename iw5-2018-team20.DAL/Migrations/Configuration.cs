@@ -50,7 +50,7 @@ namespace iw5_2018_team20.DAL.Migrations
             };
 
             context.Persons.AddOrUpdate(tomas, karolina);
-
+/*
             var stulNaTomasSelfie = new ObjectOnPhotoEntity()
             {
                 Id = new Guid("f73da629-e4db-4913-b249-183a61f79933"),
@@ -67,6 +67,12 @@ namespace iw5_2018_team20.DAL.Migrations
                 PositionY = 59
             };
 
+            var selfiesAlbum = new AlbumEntity()
+            {
+                Id = new Guid("92f40210-f3f5-4605-83b5-cf7c93889c4b"),
+                Name = "Selfies",
+            };
+
             var tomasPhoto = new PhotoEntity()
             {
                 Id = new Guid("1f92e3d5-7a1c-4a3f-8420-ecd04dc8208b"),
@@ -74,21 +80,35 @@ namespace iw5_2018_team20.DAL.Migrations
                 Name = "TomasSelfie",
                 CreationTime = new DateTime(2018, 11, 24),
                 Format = FormatType.Jpg,
+                Album = selfiesAlbum,
                 Height = 500,
                 Width = 352,
                 Note = "Nejaka dlouha poznamka.",
             };
 
-            var selfiesAlbum = new AlbumEntity()
+
+            var zdenekPhoto = new PhotoEntity()
             {
-                Id = new Guid("92f40210-f3f5-4605-83b5-cf7c93889c4b"),
-                Name = "Selfies",
+                Id = new Guid("8b3c9232-057e-46f0-988d-e2f48acca62f"),
+                ObjectsOnPhoto = { },
+                Name = "ZdenekSelfie",
+                CreationTime = new DateTime(2018, 11, 24),
+                Format = FormatType.Jpg,
+                Album = selfiesAlbum,
+                Height = 500,
+                Width = 352,
+                Note = "Nejaka kratka poznamka.",
             };
+
+          
 
             selfiesAlbum.Photos.Add(tomasPhoto);
 
+            selfiesAlbum.Photos.Add(zdenekPhoto);
+
             context.Albums.AddOrUpdate( selfiesAlbum );
             context.Photos.AddOrUpdate( tomasPhoto );
+            context.Photos.AddOrUpdate(zdenekPhoto);*/
         }
     }
 }

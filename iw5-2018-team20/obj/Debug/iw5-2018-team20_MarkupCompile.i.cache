@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\sajdi\Source\Repos\Gallery\iw5-2018-team20\App.xaml
-11151548125
+10-1978833987
 
-191430602620
-191075789947
-MainWindow.xaml;
+32693943452
+23-1237344779
+Views\AlbumDetailView.xaml;Views\AlbumsListView.xaml;Views\MainWindow.xaml;Views\ObjectsOnPhotoView.xaml;Views\PersonAddListView.xaml;Views\PersonListView.xaml;Views\PhotoDetailView.xaml;Views\PhotoListView.xaml;Views\ThingsAddListView.xaml;Views\ThingsListView.xaml;
 
-False
+True
 

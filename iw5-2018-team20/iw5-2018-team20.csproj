@@ -56,9 +56,19 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -77,28 +87,94 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AddNewObjectOnPhotoCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\SaveAlbumCommand.cs" />
     <Compile Include="Commands\SavePhotoCommand.cs" />
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\AlbumDetailViewModel.cs" />
-    <Compile Include="ViewModels\AlbumsListViewModel.cs" />
+    <Compile Include="ViewModels\AlbumListViewModel.cs" />
+    <Compile Include="ViewModels\ObjectsOnPhotoViewModel.cs" />
     <Compile Include="ViewModels\PersonListViewModel.cs" />
     <Compile Include="ViewModels\PhotoDetailViewModel.cs" />
     <Compile Include="ViewModels\PhotosListViewModel.cs" />
     <Compile Include="ViewModels\ThingsListViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="Views\AlbumDetailView.xaml.cs">
+      <DependentUpon>AlbumDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AlbumsListView.xaml.cs">
+      <DependentUpon>AlbumsListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ObjectsOnPhotoView.xaml.cs">
+      <DependentUpon>ObjectsOnPhotoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PersonAddListView.xaml.cs">
+      <DependentUpon>PersonAddListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PersonListView.xaml.cs">
+      <DependentUpon>PersonListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PhotoDetailView.xaml.cs">
+      <DependentUpon>PhotoDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PhotoListView.xaml.cs">
+      <DependentUpon>PhotoListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="Views\ThingsAddListView.xaml.cs">
+      <DependentUpon>ThingsAddListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ThingsListView.xaml.cs">
+      <DependentUpon>ThingsListView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\AlbumDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AlbumsListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ObjectsOnPhotoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PersonAddListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PersonListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PhotoDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PhotoListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ThingsAddListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ThingsListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -148,6 +224,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\ZdenekSelfie.Jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\TomasSelfie.Jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

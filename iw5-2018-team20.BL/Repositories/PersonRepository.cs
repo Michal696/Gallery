@@ -19,7 +19,16 @@ namespace iw5_2018_team20.BL.Repositories
                 return personEntites.Select(mapper.MapPersonEntityToPersonListModel).ToList();
             }
         }
-        
+
+        public PersonListModel GetById(Guid Id)
+        {
+            using (var galleryDbContext = new GalleryDbContext())
+            {
+                var personEntity = galleryDbContext.Persons.FirstOrDefault(x => x.Id == Id);
+                return mapper.MapPersonEntityToPersonListModel(personEntity);
+            }
+        }
+
         public PersonListModel Insert(PersonListModel person)
         {
             using (var galleryDbContext = new GalleryDbContext())
