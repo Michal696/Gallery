@@ -3,21 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:iw5_2018_team20.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:iw5_2018_team20.Views"         
+             xmlns:viewModels="clr-namespace:iw5_2018_team20.ViewModels"
              DataContext="{Binding PersonListViewModel, Source={StaticResource ViewModelLocator}}"
+             d:DataContext="{d:DesignInstance viewModels:PersonListViewModel, IsDesignTimeCreatable=False}"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="200">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" x:Key="PersonListTextBlockStyle">
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
-        <ListBox x:Name="RecipesListBox" ItemsSource="{Binding Persons}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Margin="8">
-                        <TextBlock Text="{Binding Firstname}"/>
-                        <TextBlock Text=" "/>
-                        <TextBlock Text="{Binding Surname}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <ListView x:Name="PersonListBox" ItemsSource="{Binding Persons}" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding SelectPersonCommand}"
+                                           CommandParameter="{Binding ElementName=PersonListBox, Path=SelectedItem}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="auto"  Header="Meno" DisplayMemberBinding="{Binding Firstname}"/>
+                    <GridViewColumn Width="auto" Header="Priezvisko" DisplayMemberBinding="{Binding Surname}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </UserControl>

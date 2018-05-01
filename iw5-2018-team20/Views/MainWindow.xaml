@@ -37,7 +37,21 @@
             </TabItem>
            
             <TabItem Header="Osoby">
-                <views:PersonListView/> 
+                <Grid x:Name="ListPersonColumnGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>                        
+                        
+                    </Grid>
+                    <views:PersonListView Grid.Row="1"/>
+                    <views:PersonAddListView Grid.Column="1"/>
+                </Grid> 
             </TabItem>
             <TabItem Header="Predmety">
                 <views:ThingsListView/>
