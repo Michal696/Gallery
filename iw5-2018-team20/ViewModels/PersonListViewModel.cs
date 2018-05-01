@@ -121,14 +121,7 @@ namespace iw5_2018_team20.ViewModels
             Detail = personRepository.GetById(message.Id);
         }
 
-        private void AlbumSelectionChanged(object parameter)
-        {
-            if (parameter is AlbumsListModel album)
-            {
-                messenger.Send(new SelectedAlbumMessage { Id = album.Id });
-            }
-
-        }
+   
 
 
 
