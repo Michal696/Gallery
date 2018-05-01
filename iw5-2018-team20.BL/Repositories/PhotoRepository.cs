@@ -85,7 +85,6 @@ namespace iw5_2018_team20.BL.Repositories
             {
                 var entity = galleryDbContext.Photos.First(r => r.Id == detail.Id);
 
-                entity.Name = detail.Name;
                 entity.CreationTime = detail.CreationTime;
                 entity.Format = detail.Format;
                 entity.Width = detail.Width;
