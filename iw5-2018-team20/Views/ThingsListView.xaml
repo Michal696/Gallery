@@ -20,12 +20,12 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <MenuItem Grid.Row="0" Header="Smazat vybraný předmět" Command="{Binding DeleteThingsCommand}" />
+        <Button Grid.Row="0" FontSize="30" Content="Smazat vybraný předmět" Command="{Binding DeleteThingsCommand}" />
         <ListView Grid.Row="1" x:Name="ThingsListBox" ItemsSource="{Binding Things}" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
@@ -50,10 +50,10 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0"  Content="Nazov: "></Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label FontSize="30" Grid.Row="0" Grid.Column="0"  Content="Název: "></Label>
+            <TextBox FontSize="30" Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </Grid>
 
-        <Button Grid.Row="3" Content="Přidat nový předmět" Command="{Binding AddThingsCommand}" />
+        <Button Grid.Row="3" FontSize="30"  Content="Přidat nový předmět" Command="{Binding AddThingsCommand}" />
     </Grid>
 </UserControl>

@@ -24,7 +24,7 @@ namespace iw5_2018_team20.ViewModels
         private readonly PersonRepository personRepository;
         private readonly IMessenger messenger;
         private PhotoDetailModel Detail;
-        public string InputPosX { get; set; }
+        public string InputPosX { get; set;  }
         public string InputPosY { get; set; }
 
         public Guid SelectedObject { get; set; }
@@ -51,9 +51,31 @@ namespace iw5_2018_team20.ViewModels
             thingRepository = new ThingRepository();
             personRepository = new PersonRepository();
 
+            UpdateAllObjects();
+
+
+            this.photoRepository = photoRepository;
+            this.messenger = messenger;
+
+            DeletePersonOnPhotoCommand = new RelayCommand(DeletePersonOnPhoto);
+            PersonSelectionChanged = new RelayCommand(selectPerson);
+
+            DeleteThingOnPhotoCommand = new RelayCommand(DeleteThingOnPhoto);
+            ThingSelectionChanged = new RelayCommand(selectThing);
+
+            AddNewObject = new AddNewObjectOnPhotoCommand(this, photoRepository, Detail, messenger);
+
+            this.messenger.Register<SelectedMessage>(SelectedPhoto);
+            this.messenger.Register<NewMessage>(NewPhotoMessageReceived);
+            this.messenger.Register<UpdateDetailListsMessage>(UpdateLists);
+            this.messenger.Register<ThingsOrPeronsUpdatedMessage>(ListsUpdated);
+        }
+
+        void UpdateAllObjects()
+        {
             List<ThingsListModel> things = thingRepository.GetAll();
             List<PersonListModel> persons = personRepository.GetAll();
-
+            AllObjects.Clear();
             foreach (var thingsListModel in things)
             {
                 AllObjects.Add(new ObjectsListModel()
@@ -71,23 +93,16 @@ namespace iw5_2018_team20.ViewModels
                     Name = personsListModel.Firstname + " " + personsListModel.Surname
                 });
             }
-
-
-            this.photoRepository = photoRepository;
-            this.messenger = messenger;
-
-            DeletePersonOnPhotoCommand = new RelayCommand(DeletePersonOnPhoto);
-            PersonSelectionChanged = new RelayCommand(selectPerson);
-
-            DeleteThingOnPhotoCommand = new RelayCommand(DeleteThingOnPhoto);
-            ThingSelectionChanged = new RelayCommand(selectThing);
-
-            AddNewObject = new AddNewObjectOnPhotoCommand(this, photoRepository, Detail, messenger);
-
-            this.messenger.Register<SelectedMessage>(SelectedPhoto);
-            this.messenger.Register<NewMessage>(NewPhotoMessageReceived);
-            this.messenger.Register<UpdateDetailListsMessage>(UpdateLists);
         }
+
+        void ListsUpdated(ThingsOrPeronsUpdatedMessage m)
+        {
+            if (m is ThingsOrPeronsUpdatedMessage s)
+            {
+                UpdateAllObjects();
+            }
+        }
+
         void selectThing(object param)
         {
             if (param is ObjectOnPhotoModel m)

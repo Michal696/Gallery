@@ -31,9 +31,9 @@
                                                CommandParameter="{Binding ElementName=PhotosListBox, Path=SelectedItem}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                <ListView.View>
+                <ListView.View >
                     <GridView>
-                        <GridViewColumn  DisplayMemberBinding="{Binding Name}" >
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" >
                             <GridViewColumnHeader Content="Nazev"
                                                   Command="{Binding SortByNameCommand}"></GridViewColumnHeader>
                         </GridViewColumn>

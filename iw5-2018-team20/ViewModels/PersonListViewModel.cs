@@ -47,8 +47,8 @@ namespace iw5_2018_team20.ViewModels
         
         public PersonListViewModel(PersonRepository personRepository, IMessenger messenger)
         { 
-            Firstname = "Zadaj prve meno";
-            Surname = "Zadaj prezvisko";
+            Firstname = "Zadej jméno";
+            Surname = "Zadej příjmení";
 
             List<PersonListModel> persons = personRepository.GetAll();
 
@@ -66,12 +66,11 @@ namespace iw5_2018_team20.ViewModels
         }
 
         private void SelectPersonInList(object parameter)
-            {
+        {
             if (parameter is PersonListModel person)
             {
-                messenger.Send(new SelectedPersonMessage { Id = person.Id });
+                messenger.Send(new SelectedPersonMessage {Id = person.Id});
             }
-
         }
 
         void AddPersonInList()
@@ -81,8 +80,8 @@ namespace iw5_2018_team20.ViewModels
             person.Surname = Surname;
             personRepository.Insert(person);
             
-            Persons = new ObservableCollection<PersonListModel>();
             OnLoad();
+            messenger.Send(new ThingsOrPeronsUpdatedMessage());
         }
 
 
@@ -110,6 +109,7 @@ namespace iw5_2018_team20.ViewModels
                 personRepository.Remove(detail.Id);
                 messenger.Send(new DeletePersonInListMessage(detail.Id));
                 detail = null;
+                messenger.Send(new ThingsOrPeronsUpdatedMessage());
             }
             else
                 Console.WriteLine("No person is selected.");

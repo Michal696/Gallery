@@ -20,13 +20,13 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Content="Vymazat vybranou osobu" Command="{Binding DeletePersonCommand}" />
-        <ListView Grid.Row="1" x:Name="PersonListBox" ItemsSource="{Binding Persons}" >
+        <Button FontSize="30" Grid.Row="0" Content="Vymazat vybranou osobu" Command="{Binding DeletePersonCommand}" />
+        <ListView Grid.Row="1" x:Name="PersonListBox" ItemsSource="{Binding Persons}" SelectionChanged="PersonListBox_SelectionChanged" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <i:InvokeCommandAction Command="{Binding SelectPersonCommand}"
@@ -51,11 +51,11 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0"  Content="Jmeno: "></Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Firstname, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <Label Grid.Row="1" Grid.Column="0"  Content="Prijmeni: "></Label>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label FontSize="30" Grid.Row="0" Grid.Column="0"  Content="Jméno: "></Label>
+            <TextBox FontSize="30" Grid.Row="0" Grid.Column="1" Text="{Binding Firstname, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label FontSize="30" Grid.Row="1" Grid.Column="0"  Content="Příjmení: "></Label>
+            <TextBox FontSize="30" Grid.Row="1" Grid.Column="1" Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </Grid>
-        <Button Grid.Row="3" Content="Přidat novou osobu" Command="{Binding AddPersonCommand}" />
+        <Button FontSize="30" Grid.Row="3" Content="Přidat novou osobu" Command="{Binding AddPersonCommand}" />
     </Grid>
 </UserControl>

@@ -58,7 +58,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100" Header="Nazev veci" DisplayMemberBinding="{Binding Object.Name}"/>
-                    <GridViewColumn Width="100"  />
+                   
                     <GridViewColumn Width="100" Header="Pozice X"  DisplayMemberBinding="{Binding PositionX}" />
                     <GridViewColumn Width="100" Header="Pozice Y" DisplayMemberBinding="{Binding PositionY}"/>
 
