@@ -50,7 +50,7 @@ namespace iw5_2018_team20.DAL.Migrations
             };
 
             context.Persons.AddOrUpdate(tomas, karolina);
-
+/*
             var stulNaTomasSelfie = new ObjectOnPhotoEntity()
             {
                 Id = new Guid("f73da629-e4db-4913-b249-183a61f79933"),
@@ -108,7 +108,7 @@ namespace iw5_2018_team20.DAL.Migrations
 
             context.Albums.AddOrUpdate( selfiesAlbum );
             context.Photos.AddOrUpdate( tomasPhoto );
-            context.Photos.AddOrUpdate(zdenekPhoto);
+            context.Photos.AddOrUpdate(zdenekPhoto);*/
         }
     }
 }

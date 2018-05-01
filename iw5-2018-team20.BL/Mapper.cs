@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using iw5_2018_team20.BL.Models;
 using iw5_2018_team20.BL.Repositories;
 using iw5_2018_team20.DAL.Entities;
@@ -12,13 +13,14 @@ namespace iw5_2018_team20.BL
             return new PhotoDetailModel()
             {
                 Id = entity.Id,
-                Name = entity.Name,
+                Name = Path.GetFileName(entity.Name),
                 Album = entity.Album,
                 CreationTime = entity.CreationTime,
                 Format = entity.Format,
                 Height = entity.Height,
                 Note = entity.Note,
                 Width = entity.Width,
+                Path = entity.Name,
                 ObjectsOnPhoto = MapObjectsOnPhotoEntityToModelList(entity.ObjectsOnPhoto)
             };
         }
@@ -53,7 +55,7 @@ namespace iw5_2018_team20.BL
             return new PhotosListModel()
             {
                 Id = entity.Id,
-                Name = entity.Name,
+                Name = Path.GetFileName(entity.Name),
                 CreationTime = entity.CreationTime,
                 Format = entity.Format,
                 Album = entity.Album,
@@ -67,7 +69,7 @@ namespace iw5_2018_team20.BL
             return new PhotoEntity()
             {
                 Id = model.Id,
-                Name = model.Name,
+                Name = model.Path,
                 Album = model.Album,
                 CreationTime = model.CreationTime,
                 Format = model.Format,

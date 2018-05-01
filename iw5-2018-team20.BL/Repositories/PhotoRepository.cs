@@ -12,14 +12,12 @@ namespace iw5_2018_team20.BL.Repositories
     {
         Mapper mapper = new Mapper();
 
-
-
         public PhotoDetailModel FindById(Guid id)
         {
             using (var galleryDbContext = new GalleryDbContext())
             {
                 var photo = galleryDbContext.Photos
-                    .Include(x => x.ObjectsOnPhoto.Select( y => y.Object))
+                    .Include(x => x.ObjectsOnPhoto.Select(y => y.Object))
                     .Include(x => x.Album)
                     .FirstOrDefault(x => x.Id == id);
 
@@ -63,7 +61,7 @@ namespace iw5_2018_team20.BL.Repositories
                 }
 
                 galleryDbContext.Photos.Add(entity);
-  
+
                 galleryDbContext.SaveChanges();
 
                 return mapper.MapPhotoEntityToPhotoDetailModel(entity);
@@ -74,7 +72,7 @@ namespace iw5_2018_team20.BL.Repositories
         {
             using (var galleryDbContext = new GalleryDbContext())
             {
-                var entity = new PhotoEntity() {Id = id};
+                var entity = new PhotoEntity() { Id = id };
                 galleryDbContext.Photos.Attach(entity);
                 galleryDbContext.Photos.Remove(entity);
                 galleryDbContext.SaveChanges();
@@ -99,7 +97,7 @@ namespace iw5_2018_team20.BL.Repositories
                     var album = galleryDbContext.Albums.First(x => x.Id == detail.Album.Id);
                     entity.Album = album;
                 }
-                
+
                 foreach (var objectOnPhotoEntity in entity.ObjectsOnPhoto.ToList())
                 {
                     galleryDbContext.ObjectOnPhotoEntities.Remove(objectOnPhotoEntity);
@@ -108,35 +106,24 @@ namespace iw5_2018_team20.BL.Repositories
 
                 foreach (var objectOnPhotoModel in detail.ObjectsOnPhoto)
                 {
+                    ObjectOnPhotoEntity toAdd = new ObjectOnPhotoEntity()
+                    {
+                        PositionX = objectOnPhotoModel.PositionX,
+                        PositionY = objectOnPhotoModel.PositionY,
+                        Id = Guid.NewGuid(),
+                        Photo = entity
+                    };
 
                     var thing = galleryDbContext.Things.FirstOrDefault(x => x.Id == objectOnPhotoModel.Object.Id);
                     var person = galleryDbContext.Persons.FirstOrDefault(x => x.Id == objectOnPhotoModel.Object.Id);
+
                     if (thing != null)
-                    {
-                        galleryDbContext.ObjectOnPhotoEntities.Add(new ObjectOnPhotoEntity()
-                        {
-                            PositionX = objectOnPhotoModel.PositionX,
-                            PositionY = objectOnPhotoModel.PositionY,
-                            Id = Guid.NewGuid(),
-                            Object = thing,
-                            Photo = entity
-                        });
-                    }
+                        toAdd.Object = thing;
 
                     else if (person != null)
-                    {
-                        
-                        galleryDbContext.ObjectOnPhotoEntities.Add(new ObjectOnPhotoEntity()
-                        {
-                            PositionX = objectOnPhotoModel.PositionX,
-                            PositionY = objectOnPhotoModel.PositionY,
-                            Id = Guid.NewGuid(),
-                            Object = person,
-                            Photo = entity
-                        });
-                    }
+                        toAdd.Object = person;
 
-                    //galleryDbContext.SaveChanges();
+                    galleryDbContext.ObjectOnPhotoEntities.Add(toAdd);
                 }
 
 
@@ -146,22 +133,6 @@ namespace iw5_2018_team20.BL.Repositories
             }
         }
 
-        /*private void RemoveObjectOnPhotoById(ObjectOnPhotoEntity )
-        {
-            using (var galleryDbContext = new GalleryDbContext())
-            {
-                var entity = new ObjectOnPhotoEntity() { Id = id };
-                entity.Object = galleryDbContext.Persons.FirstOrDefault(x => x.Id == entity.Object.Id);
-                if (entity.Object == null)
-                {
-                    entity.Object = galleryDbContext.Things.FirstOrDefault(x => x.Id == entity.Object.Id);
-                }
-
-                galleryDbContext.ObjectOnPhotoEntities.Attach(entity);
-                galleryDbContext.ObjectOnPhotoEntities.Remove(entity);
-                galleryDbContext.SaveChanges();
-            }
-        }*/
 
     }
 }

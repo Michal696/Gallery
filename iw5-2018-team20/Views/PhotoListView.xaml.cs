@@ -34,5 +34,11 @@ namespace iw5_2018_team20.Views
                 viewModel.OnLoad();
             }
         }
+
+        private void OnDropMethod(object sender, DragEventArgs e)
+        {
+            ((PhotosListViewModel)this.DataContext).AddNewPictures(e.Data);
+            e.Handled = true;
+        }
     }
 }
