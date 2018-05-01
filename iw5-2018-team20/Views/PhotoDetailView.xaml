@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="iw5_2018_team20.Views.PhotoDetailView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:viewModels="clr-namespace:iw5_2018_team20.ViewModels"
+      xmlns:views="clr-namespace:iw5_2018_team20.Views"
+      DataContext="{Binding PhotoDetailViewModel, Source={StaticResource ViewModelLocator}}"
+      d:DataContext="{d:DesignInstance viewModels:PhotoDetailViewModel, IsDesignTimeCreatable=False}"
+      mc:Ignorable="d" 
+      d:DesignHeight="600"
+      d:DesignWidth="400">
+
+    <Grid x:Name="Root" MinWidth="500"  Visibility="{Binding Detail, Converter={StaticResource NullToVisibilityConverter}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+        <Button  Grid.Row="0"  Grid.ColumnSpan="2" Command="{Binding DeletePhotoCommand}" Content="Smazat fotku z galerie"></Button>
+        <Label FontWeight="Bold" Grid.Row="1" Grid.Column="0" Content="Poznámka:"></Label>
+        <TextBox Grid.Row="1" Text="{Binding Path=PoznamkaInput}" Grid.Column="1"></TextBox>
+        <Label FontWeight="Bold" Grid.Row="2" Grid.Column="0" Content="Album:"></Label>
+        <ComboBox Grid.Row="2" Grid.Column="1"
+                  ItemsSource="{Binding AllAlbums}"
+                  DisplayMemberPath="Name"
+                  SelectedValuePath="Id"
+                  SelectedValue="{Binding Path=SelectedObject}" />
+        <Button Grid.ColumnSpan="2" Grid.Row="3" Command="{Binding UpdatePhotoCommand}" Content="Uložit změny"></Button>
+        <Grid Grid.Row="4" Grid.ColumnSpan="2" DataContext="{Binding Detail}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="7*"/>
+            </Grid.ColumnDefinitions>
+            
+            
+            <Label FontWeight="Bold" Grid.Row="0" Grid.Column="0" Content="Název:"></Label>
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}"></TextBlock>
+
+            <Label FontWeight="Bold" Grid.Row="1" Grid.Column="0" Content="Datum:"></Label>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CreationTime}"></TextBlock>
+
+            <Label FontWeight="Bold" Grid.Row="2" Grid.Column="0" Content="Formát:"></Label>
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Format}"></TextBlock>
+
+            <Label FontWeight="Bold" Grid.Row="3" Grid.Column="0" Content="Rozlišení:"></Label>
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Dimensions}"></TextBlock>
+
+
+            <Label FontWeight="Bold" Grid.Row="4" Grid.Column="0" Content="Poznámka:"></Label>
+            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Note}"></TextBlock>
+
+            <Label FontWeight="Bold" Grid.Row="5" Grid.Column="0" Content="Album:"></Label>
+            <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Album.Name}"></TextBlock>
+
+            <Image  Grid.Row="6" Source="{ Binding Path}" Grid.ColumnSpan="2"/>
+            <Label FontWeight="Bold" FontSize="15" Grid.Row="7" Grid.ColumnSpan="2" Content="Objekty na fotografii"></Label>
+            <Grid  Grid.Row="8" Grid.ColumnSpan="2" >
+                <views:ObjectsOnPhotoView/>
+            </Grid>
+
+            
+        </Grid>
+    </Grid>
+
+
+
+</UserControl>

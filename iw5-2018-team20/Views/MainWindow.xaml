@@ -1,0 +1,76 @@
+﻿<Window x:Class="iw5_2018_team20.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:iw5_2018_team20.ViewModels"
+        xmlns:views="clr-namespace:iw5_2018_team20.Views"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized"> 
+    <Grid>
+        <TabControl>
+            <TabItem Header="Fotografie">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid x:Name="ListColumnGrid1" Grid.Column="0">
+                        <views:PhotoListView />
+                    </Grid>
+                    <views:PhotoDetailView Grid.Column="1"/>
+                </Grid>
+            </TabItem>
+           
+            <TabItem Header="Alba">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid x:Name="ListColumnGrid2" Grid.Column="0">
+                        <views:AlbumsListView />
+                    </Grid>
+                    <views:AlbumDetailView Grid.Column="1"/>
+                </Grid>
+            </TabItem>
+           
+            <TabItem Header="Osoby">
+                <Grid x:Name="ListPersonColumnGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>                        
+                        
+                    </Grid>
+                    <views:PersonListView Grid.Row="1"/>
+                    <views:PersonAddListView Grid.Column="1"/>
+                </Grid> 
+            </TabItem>
+            <TabItem Header="Predmety">
+                <Grid x:Name="ListThingsColumnGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                    </Grid>
+                    <views:ThingsListView Grid.Row="1"/>
+                    <views:ThingsAddListView Grid.Column="1"/>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>

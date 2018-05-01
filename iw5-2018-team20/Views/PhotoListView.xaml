@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="iw5_2018_team20.Views.PhotoListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:viewModels="clr-namespace:iw5_2018_team20.ViewModels"
+             DataContext="{Binding PhotosListViewModel, Source={StaticResource ViewModelLocator}}"
+             d:DataContext="{d:DesignInstance viewModels:PhotosListViewModel, IsDesignTimeCreatable=False}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="200">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" x:Key="PhotoListTextBlockStyle">
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0"  Margin="10">
+            <TextBox  DockPanel.Dock="Top" Height="25" Name="txtFilter" Text="{Binding Path=Filter, UpdateSourceTrigger=PropertyChanged}"/>
+            <ListView x:Name="PhotosListBox" ItemsSource="{Binding AllPhotos}" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectPhotoCommand}"
+                                               CommandParameter="{Binding ElementName=PhotosListBox, Path=SelectedItem}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn  DisplayMemberBinding="{Binding Name}" >
+                            <GridViewColumnHeader Content="Nazev"
+                                                  Command="{Binding SortByNameCommand}"></GridViewColumnHeader>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding CreationTime}">
+                            <GridViewColumnHeader Content="Datum"
+                                                  Command="{Binding SortByTimeCommand}"></GridViewColumnHeader>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Rozliseni" DisplayMemberBinding="{Binding Dimensions}"/>
+                        <GridViewColumn Header="Format" DisplayMemberBinding="{Binding Format}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            
+        </DockPanel>
+        <Grid Grid.Row="1" AllowDrop="True" Drop="OnDropMethod" Height="100" MinWidth="200" x:Name="Root">
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20pt">Přetáhněte nové obrázky sem</Label>
+        </Grid>
+    </Grid>
+    
+
+</UserControl>
