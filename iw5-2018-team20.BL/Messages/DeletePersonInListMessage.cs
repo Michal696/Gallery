@@ -14,5 +14,6 @@ namespace iw5_2018_team20.BL.Messages
         }
 
         public Guid PersonId { get; set; }
+        public Guid Id { get; set; }
     }
 }

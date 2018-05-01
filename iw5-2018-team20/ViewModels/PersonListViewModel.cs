@@ -23,24 +23,33 @@ namespace iw5_2018_team20.ViewModels
         public string Firstname { get; set; }
         public string Surname { get; set; }
 
-        private PersonListModel selectedPerson; //= new PersonListModel();
+        private PersonListModel detail;
 
+        public PersonListModel Detail
+        {
+            get { return detail; }
+            set
+            {
+                if (Equals(value, Detail)) return;
+
+                detail = value;
+                OnPropertyChanged();
+            }
+        }
+
+      
         public ObservableCollection<PersonListModel> Persons { get; set; } = new ObservableCollection<PersonListModel>();
 
         
         public ICommand SelectPersonCommand { get; }
         public ICommand AddPersonCommand { get; }
         public ICommand DeletePersonCommand { get; }
-
-        //public AddNewPersonInListCommand AddNewPerson { get; }
-
+        
         public PersonListViewModel(PersonRepository personRepository, IMessenger messenger)
         {
 
             Firstname = "Zadaj prve meno";
             Surname = "Zadaj prezvisko";
-
-            //personRepository = new PersonRepository();
 
             List<PersonListModel> persons = personRepository.GetAll();
 
@@ -50,17 +59,11 @@ namespace iw5_2018_team20.ViewModels
 
             SelectPersonCommand = new RelayCommand(SelectPersonInList);
             AddPersonCommand = new RelayCommand(AddPersonInList);
-            //DeletePersonCommand = new RelayCommand(DeletePersonInList);
+            DeletePersonCommand = new RelayCommand(DeletePersonInList);
 
             this.messenger.Register<DeletePersonInListMessage>(Reload);
+            this.messenger.Register<SelectedPersonMessage>(SelectedPerson);
 
-            //AddNewPerson = new AddNewPersonInListCommand(this, personRepository, selectedPerson, messenger);
-
-            //this.messenger.Register<NewPersonMessage>(NewPersonMessageReceived);
-            //this.messenger.Register<SelectedMessage>(SelectedPerson);
-            //this.messenger.Register<UpdatePersonListMessage>(UpdatePersonList);
-        
-            //OnLoad();
         }
 
         private void SelectPersonInList(object parameter)
@@ -98,29 +101,32 @@ namespace iw5_2018_team20.ViewModels
                 Persons.Add(person);
             }
         }
-        //void DeletePersonInList()///////////
-        //{
-        //    if (selectedPerson != null)
-        //    {
-        //        personRepository.Remove(selectedPerson.Id);
-        //        messenger.Send(new DeletePersonInListMessage()
-        //        {
-        //            Id = selectedPerson.Id
-        //        });
-        //    }
-        //    else
-        //        Console.WriteLine("No person is selected.");
+        void DeletePersonInList()///////////
+        {
+            if (detail != null)
+            {
+                personRepository.Remove(detail.Id);
+                messenger.Send(new DeletePersonInListMessage(detail.Id));
+            }
+            else
+                Console.WriteLine("No person is selected.");
 
-        //    OnLoad();
-        //}
-        //private void PersonSelectionChanged(object parameter)
-        //{
-        //    if (parameter is PersonListModel person)
-        //    {
-        //        messenger.Send(new SelectedMessage { Id = person.Id });
-        //    }
+            //OnLoad();
+        }
 
-        //}
+        private void SelectedPerson(SelectedPersonMessage message)
+        {
+            Detail = personRepository.GetById(message.Id);
+        }
+
+        private void AlbumSelectionChanged(object parameter)
+        {
+            if (parameter is AlbumsListModel album)
+            {
+                messenger.Send(new SelectedAlbumMessage { Id = album.Id });
+            }
+
+        }
 
 
 
