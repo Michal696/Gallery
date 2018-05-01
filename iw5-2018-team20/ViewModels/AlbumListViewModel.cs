@@ -15,19 +15,34 @@ namespace iw5_2018_team20.ViewModels
 {
     public class AlbumListViewModel : ViewModelBase
     {
+        public string AlbumName { get; set; }
+
         private readonly AlbumRepository albumRepository;
         private readonly IMessenger messenger;
 
         public ObservableCollection<AlbumsListModel> Albums { get; set; } = new ObservableCollection<AlbumsListModel>();
 
         public ICommand SelectAlbumCommand { get; }
+        public ICommand AddAlbumCommand { get; }
 
         public AlbumListViewModel(AlbumRepository albumRepository, IMessenger messenger)
         {
+            AlbumName = "Nové album";
+
             this.albumRepository = albumRepository;
             this.messenger = messenger;
 
+            AddAlbumCommand = new RelayCommand(AddAlbum);
             SelectAlbumCommand = new RelayCommand(AlbumSelectionChanged);
+
+
+            this.messenger.Register<DeleteAlbumMessage>(Reload);
+        }
+
+
+        public void Reload(DeleteAlbumMessage m)
+        {
+            OnLoad();
         }
 
         public void OnLoad()
@@ -48,6 +63,14 @@ namespace iw5_2018_team20.ViewModels
                 messenger.Send(new SelectedAlbumMessage { Id = album.Id });
             }
 
+        }
+
+        void AddAlbum()
+        {
+            var album = new AlbumDetailModel();
+            album.Name = AlbumName;
+            albumRepository.Insert(album);
+            OnLoad();
         }
 
     }

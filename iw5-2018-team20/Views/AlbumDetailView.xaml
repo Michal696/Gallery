@@ -12,7 +12,6 @@
              d:DesignWidth="400">
 
     <Grid x:Name="Root" MinWidth="500"  Visibility="{Binding Detail, Converter={StaticResource NullToVisibilityConverter}}">
-        <Grid DataContext="{ Binding Detail}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -21,9 +20,20 @@
                 <ColumnDefinition Width="100"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
+          
+            <Button Grid.Row="0" Grid.ColumnSpan="2" Command="{Binding DeleteAlbumCommand}" Content="Odebrat album"></Button>
+        <Grid Grid.Row="1" ColumnSpan="2" DataContext="{ Binding Detail}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
             <Label FontWeight="Bold" Grid.Row="0" Grid.Column="0" Content="Název alba:"></Label>
             <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}"></TextBlock>
-            <ListView Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Photos}" >
+            <ListView Grid.Row="2" Grid.ColumnSpan="2" ItemsSource="{Binding Photos}" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Nazev"  DisplayMemberBinding="{Binding Name}" />
